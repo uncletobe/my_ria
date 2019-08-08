@@ -18,22 +18,25 @@ use Faker\Generator as Faker;
 
 $factory->define(NewsArticle::class, function (Faker $faker) {
 
-        $title = $faker->sentence(rand(3, 8), true);
-        $txt = $faker->realText(rand(1000, 4000));
+        $title = $faker->sentence(rand(5, 10), true);
+        $txt = $faker->realText(rand(2000, 4000));
         $isPublished = rand(1, 5) > 1;
+        $is_main_news = rand(1, 10) < 2;
+        $is_recommend = rand(1, 10) < 2;
 
         $createdAt = $faker->dateTimeBetween('-3 month', '-2 month');
 
         $data = [
-            'category_id'  => rand(1, 11),
-            'user_id'      => (rand(1, 5) == 5) ? 1 : 2,
-            'title'        => $title,
-            'slug'         => Str::slug($title),
-            'excerpt'      => $faker->text(rand(40, 100)),
-            'content_raw'  => $txt,
-            'content_html' => $txt,
+            'article_title'  => $title,
+            'article_slug' => Str::slug($title),
+            'article_excerpt'      => $faker->text(rand(30, 50)),
+            'article_content_raw'  => $txt,
+            'article_content_html' => $txt,
+            'is_main_news' => $is_main_news,
+            'article_picture_preview_path' => 'path:\'C\'' . Str::slug($title, '\''),
             'is_published' => $isPublished,
             'published_at' => $isPublished ? $faker->dateTimeBetween('-3 month', '-1 day') : null,
+            'is_recommend' => $is_recommend,
             'created_at'   => $createdAt,
             'updated_at'   => $createdAt,
 

@@ -23,11 +23,12 @@ class CreateNewsArticlesTable extends Migration
             $table->text('article_content_raw');
             $table->text('article_content_html');
 
-            $table->string('article_picture_preview');
-            $table->string('article_main_picture');
+            $table->string('article_picture_preview_path');
 
             $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();
+
+            $table->boolean('is_main_news')->default(false);
 
             $table->boolean('is_recommend')->default(false);
             $table->unsignedBigInteger('views')->default(0);

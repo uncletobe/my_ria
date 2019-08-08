@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsCommentsTable extends Migration
+class CreateNewsPicturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateNewsCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_comments', function (Blueprint $table) {
+        Schema::create('news_pictures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('article_id')->unsigned();
-            $table->text('comment_raw');
-
+            $table->string('news_picture_path')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('news_comments', function ($table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::table('news_pictures', function ($table) {
             $table->foreign('article_id')->references('id')->on('news_articles')->onDelete('cascade');
         });
     }
@@ -35,6 +32,6 @@ class CreateNewsCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_comments');
+        Schema::dropIfExists('news_pictures');
     }
 }

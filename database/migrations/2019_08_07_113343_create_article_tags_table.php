@@ -21,8 +21,8 @@ class CreateArticleTagsTable extends Migration
         });
 
         Schema::table('article_tags', function ($table) {
-            $table->foreign('article_id')->references('id')->on('news_articles');
-            $table->foreign('tag_id')->references('id')->on('news_tags');
+            $table->foreign('article_id')->references('id')->on('news_articles')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('news_tags')->onDelete('cascade');
         });
     }
 

@@ -22,7 +22,7 @@ class CreateNewsTagsTable extends Migration
         });
 
         Schema::table('news_tags', function ($table) {
-           $table->foreign('parent_id')->references('id')->on('news_categories');
+           $table->foreign('parent_id')->references('id')->on('news_categories')->onDelete('cascade');
         });
     }
 
