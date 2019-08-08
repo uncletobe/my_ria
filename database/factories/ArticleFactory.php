@@ -29,11 +29,11 @@ $factory->define(NewsArticle::class, function (Faker $faker) {
         $data = [
             'article_title'  => $title,
             'article_slug' => Str::slug($title),
-            'article_excerpt'      => $faker->text(rand(30, 50)),
+            'article_excerpt'      => $faker->text(rand(50, 70)),
             'article_content_raw'  => $txt,
             'article_content_html' => $txt,
             'is_main_news' => $is_main_news,
-            'article_picture_preview_path' => 'path:\'C\'' . Str::slug($title, '\''),
+            'article_picture_preview_path' => "path:\C\\" . Str::slug($title, "\\"),
             'is_published' => $isPublished,
             'published_at' => $isPublished ? $faker->dateTimeBetween('-3 month', '-1 day') : null,
             'is_recommend' => $is_recommend,

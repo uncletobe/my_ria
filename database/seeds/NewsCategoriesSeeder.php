@@ -36,6 +36,6 @@ class NewsCategoriesSeeder extends Seeder
             ];
         }
 
-        DB::table('news_categoris')->insert($categories);
+        DB::table('news_categories')->insert($categories);
     }
 }
