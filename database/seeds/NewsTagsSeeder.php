@@ -11,6 +11,6 @@ class NewsTagsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\News\NewsTag::class, 100)->create();
     }
 }

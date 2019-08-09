@@ -7,9 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(NewsTag::class, function (Faker $faker) {
 
-    $title = $faker->word;
+    $title = $faker->unique()->word;
 
     return [
+        'parent_id' => rand(1, 13),
         'tag_title' => $title,
         'tag_slug' => Str::slug($title),
     ];

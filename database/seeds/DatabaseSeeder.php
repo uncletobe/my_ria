@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsArticlesSeeder::class);
         $this->call(NewsCategoriesSeeder::class);
         factory(\App\Models\News\NewsPicture::class, 500)->create();
-
+        $this->call(NewsTagsSeeder::class);
+        $this->call(ArticleTagsSeeder::class);
+        factory(\App\Models\News\NewsComment::class, 100)->create();
     }
 }

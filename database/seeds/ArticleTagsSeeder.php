@@ -11,6 +11,15 @@ class ArticleTagsSeeder extends Seeder
      */
     public function run()
     {
-        //https://si-dev.com/ru/blog/generating-fake-data-in-laravel
+        $result = [];
+
+        for($i = 0; $i < 1000; $i++) {
+            $result[] = [
+                'article_id' => rand(1, 500),
+                'tag_id' => rand(1, 100),
+            ];
+        }
+
+        Db::table('article_tags')->insert($result);
     }
 }

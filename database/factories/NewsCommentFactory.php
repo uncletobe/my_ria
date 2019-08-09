@@ -7,6 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(NewsComment::class, function (Faker $faker) {
     return [
-        'comment_raw' => $faker->text(rand(50, 100)),
+        'user_id' => rand(1, 100),
+        'article_id' => rand(1, 100),
+        'comment_raw' => $faker->text(rand(50, 350)),
     ];
 });

@@ -11,6 +11,6 @@ class NewsCommentsSeeder extends Seeder
      */
     public function run()
     {
-        //
+       //
     }
 }
