@@ -24,7 +24,7 @@ $factory->define(NewsArticle::class, function (Faker $faker) {
         $is_main_news = rand(1, 10) < 2;
         $is_recommend = rand(1, 10) < 2;
 
-        $createdAt = $faker->dateTimeBetween('-3 month', '-2 month');
+        $createdAt = $faker->dateTimeBetween('-10 day', 'now');
 
         $data = [
             'article_title'  => $title,
@@ -35,7 +35,7 @@ $factory->define(NewsArticle::class, function (Faker $faker) {
             'is_main_news' => $is_main_news,
             'article_picture_preview_path' => "path:\C:\\" . Str::slug($title, "\\"),
             'is_published' => $isPublished,
-            'published_at' => $isPublished ? $faker->dateTimeBetween('-3 month', '-1 day') : null,
+            'published_at' => $isPublished ? $faker->dateTimeBetween('-10 day', 'now') : null,
             'is_recommend' => $is_recommend,
             'created_at'   => $createdAt,
             'updated_at'   => $createdAt,

@@ -20,8 +20,14 @@ class HomeController extends Controller
         $mainArticles = $this->articleRepository->getMainNewsArticles();
         $readableArticles = $this->articleRepository->getReadableArticles();
         $chessBoard = $this->articleRepository->getArticlesForChessBoard();
+        $newsCarousel = $this->articleRepository->getArticlesForNewsCarousel();
 
-
-        dd($chessBoard);
+        //dd($mainArticles);
+//
+//        foreach ($mainArticles as $elem) {
+//            dd($elem);
+//        }
+//        dd($mainArticles);
+        return view('welcome');
     }
 }

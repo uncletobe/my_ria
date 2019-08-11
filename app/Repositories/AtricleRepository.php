@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\News\NewsArticle as Model;
+use function foo\func;
 
 /**
  * Class AtricleRepository
@@ -36,13 +37,16 @@ class AtricleRepository extends CoreRepository {
             'is_published' => 1,
         ];
 
-        $result = $this->startConditions()
+        $result = $this
+            ->startConditions()
             ->select($this->commonColumns)
             ->where($where)
+            ->with(['newsPicture:id,news_picture_path'])
             ->limit($limit)
             ->orderBy('id', 'DESC')
-            ->toBase()
+            //->toBase()
             ->get();
+            //->toArray();
 
         return $result;
     }
@@ -52,7 +56,8 @@ class AtricleRepository extends CoreRepository {
 
         $where = 'is_published=1 AND published_at > (NOW() - INTERVAL 1 DAY)';
 
-        $result = $this->startConditions()
+        $result = $this
+            ->startConditions()
             ->select($this->commonColumns)
             ->whereRaw($where)
             ->orderBy('views', 'ASC')
@@ -74,7 +79,8 @@ class AtricleRepository extends CoreRepository {
         $where = '(is_published=1) AND (is_main_news=0) AND 
         (id NOT IN('.$ids.'))';
 
-        $result = $this->startConditions()
+        $result = $this
+            ->startConditions()
             ->select($this->commonColumns)
             ->whereRaw($where)
             ->orderBy('id', 'DESC')
@@ -86,6 +92,27 @@ class AtricleRepository extends CoreRepository {
 
     }
 
+
+    public function getArticlesForNewsCarousel($limit = 6) {
+
+        $ids = implode(',', $this->readAricleIds);
+
+        $where = ('(is_published=1) AND (is_main_news=0) AND
+                    (published_at > (NOW() - INTERVAL 1 DAY)) AND 
+                    (id NOT IN('.$ids.'))'
+                 );
+
+        $result = $this
+            ->startConditions()
+            ->select($this->commonColumns)
+            ->whereRaw($where)
+            ->orderBy('id', 'DESC')
+            ->limit($limit)
+            ->toBase()
+            ->get();
+
+        return $result;
+    }
 
 
 }
