@@ -20,13 +20,30 @@ class HomeController extends Controller
 
 
     public function index() {
+        $title = 'РИА Новости - события в Москве, России и мире: темы дня, фото, видео, инфографика, радио';
+
         $mainArticles = $this->articleRepository->getMainNewsArticles();
         $readableArticles = $this->articleRepository->getReadableArticles();
         $chessBoard = $this->articleRepository->getArticlesForChessBoard();
         $newsCarousel = $this->articleRepository->getArticlesForNewsCarousel();
         $authorNews = $this->authorArticleRepository->getAuthorArticles();
 
-        //dd($authorNews);
-        return view('welcome');
+        $result = $mainArticles &&
+            $readableArticles &&
+            $chessBoard &&
+            $newsCarousel &&
+            $authorNews;
+
+        if(!$result) {
+            abort(404);
+        }
+
+        return view('news.home',
+            compact('title',
+                'mainArticles',
+                'readableArticles',
+                'chessBoard',
+                'newsCarousel',
+                'authorNews'));
     }
 }
