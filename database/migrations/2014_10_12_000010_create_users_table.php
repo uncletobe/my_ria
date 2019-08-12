@@ -20,9 +20,15 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
+            $table->bigInteger('role_id')->unsigned();
+            $table->boolean('is_banned');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::table('users', function ($table) {
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

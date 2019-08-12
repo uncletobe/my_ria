@@ -17,12 +17,27 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    return [
+
+    $roleId = 4;
+    $rand = rand(1, 10);
+
+    if($rand == 1) {
+        $roleId = 2;
+    } elseif ($rand == 2) {
+        $roleId = 3;
+    }
+
+
+    $data = [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'password' => $faker->password(6), // password
         'avatar' => $faker->imageUrl($width = 100, $height = 200, 'cats'),
-        'remember_token' => Str::random(10),
+        'role_id' => $roleId,
+        'is_banned' => ($rand < 8) ? 1 : 0,
+        'remember_token' => Str::random(10)
     ];
+
+    return $data;
 });

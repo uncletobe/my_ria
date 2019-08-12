@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\News\NewsArticle as Model;
-use function foo\func;
+
 
 /**
  * Class AtricleRepository
@@ -37,16 +37,20 @@ class AtricleRepository extends CoreRepository {
             'is_published' => 1,
         ];
 
+
         $result = $this
             ->startConditions()
             ->select($this->commonColumns)
             ->where($where)
-            ->with(['newsPicture:id,news_picture_path'])
+            ->with([
+                'newsPicture:id,article_id,news_picture_path'
+            ])
             ->limit($limit)
             ->orderBy('id', 'DESC')
             //->toBase()
-            ->get();
-            //->toArray();
+            ->get()
+            ->toArray();
+
 
         return $result;
     }
