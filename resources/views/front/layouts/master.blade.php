@@ -30,7 +30,6 @@
     @yield('svg-block')
 </div>
 
-<!-- << Supercontainer -->
 <div class="super-container" id="app">
 
     <div class="container">
@@ -39,12 +38,21 @@
         </div>
     </div>
 
-
     <div class="main-content container @yield('nt')">
         @yield('content')
     </div>
+
+    @include('front.layouts.footer')
+
+    @include('front.layouts.utilites')
+
 </div>
 
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="plugins/owlcarousel/js/owl.carousel.min.js"></script>
+    @yield('scripts')
+    <script src="js/main.js"></script>
 
 </body>
 </html>

@@ -145,6 +145,7 @@ a:hover {
 }
 
 .header__menu {
+	display: none;
 	padding: 0 8px;
 	float: right;
 	height: 100%;
@@ -226,6 +227,7 @@ a:hover {
 
 .side-articles .side-articles__item {
 	max-height: 18.5%;
+	min-height: 18%;
 }
 
 .side-articles__item:not(:last-child):after {

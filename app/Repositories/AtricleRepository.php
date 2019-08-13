@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\News\NewsArticle as Model;
+use App\Models\News\NewsArticle;
 
 
 /**
@@ -38,7 +39,6 @@ class AtricleRepository extends CoreRepository {
             'is_published' => 1,
         ];
 
-
         $result = $this
             ->startConditions()
             ->select($this->commonColumns)
@@ -48,9 +48,7 @@ class AtricleRepository extends CoreRepository {
             ])
             ->limit($limit)
             ->orderBy('id', 'DESC')
-            //->toBase()
             ->get();
-            //->toArray();
 
 
         return $result;
@@ -69,7 +67,6 @@ class AtricleRepository extends CoreRepository {
             ->whereRaw($where)
             ->orderBy('views', 'ASC')
             ->limit($limit)
-            ->toBase()
             ->get();
 
         if ($result) {
@@ -93,7 +90,6 @@ class AtricleRepository extends CoreRepository {
             ->whereRaw($where)
             ->orderBy('id', 'DESC')
             ->limit($limit)
-            ->toBase()
             ->get();
 
         return $result;
@@ -105,10 +101,12 @@ class AtricleRepository extends CoreRepository {
 
         $ids = implode(',', $this->readAricleIds);
 
-        $where = ('(is_published=1) AND (is_main_news=0) AND
-                    (published_at > (NOW() - INTERVAL 1 DAY)) AND 
-                    (id NOT IN('.$ids.'))'
-                 );
+//        $where = ('(is_published=1) AND (is_main_news=0) AND
+//                    (published_at > (NOW() - INTERVAL 1 DAY)) AND
+//                    (id NOT IN('.$ids.'))'
+//                 );
+
+        $where = 'is_published=1 AND is_main_news=0 AND id NOT IN('.$ids.')';
 
         $result = $this
             ->startConditions()
@@ -116,7 +114,6 @@ class AtricleRepository extends CoreRepository {
             ->whereRaw($where)
             ->orderBy('id', 'DESC')
             ->limit($limit)
-            ->toBase()
             ->get();
 
         return $result;

@@ -134,12 +134,12 @@ function closeModalSocialBlock(modalSocialBlock) {
 
 function hideOverflowBody() {
   document.body.style = "overflow: hidden; padding-right: 17px";
-  document.querySelector(".header__menu").style = "padding-right: 25px;";
+  document.querySelector(".header__menu").style = "padding-right: 25px; display: block;";
 }
 
 function destroyBodyOverflow() {
   document.body.style = "";
-  document.querySelector(".header__menu").style = "";
+  document.querySelector(".header__menu").style = "display: block;";
 }
 
 function initHeaderMenu() {
@@ -149,6 +149,7 @@ function initHeaderMenu() {
   );
 
   if (header) {
+
     handleScroll(header, svgList);
 
     window.addEventListener("scroll", () => {
@@ -157,6 +158,8 @@ function initHeaderMenu() {
     window.addEventListener("resize", () => {
       checkScreenWidthForHeader(header, svgList);
     });
+
+    document.querySelector('.header__menu').style.display = 'block';
   }
 }
 

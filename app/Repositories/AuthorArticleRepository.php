@@ -15,6 +15,7 @@ class AuthorArticleRepository extends CoreRepository {
     private $commonColumns = [
                 'id',
                 'author_id',
+                'article_title',
                 'article_slug',
                 'article_excerpt',
                 'article_picture_preview_path',
@@ -37,12 +38,9 @@ class AuthorArticleRepository extends CoreRepository {
                 ->select($this->commonColumns)
                 ->orderBy('id', 'DESC')
                 ->limit($limit)
-                ->with(['user:name'])
+                ->with(['user:id,name'])
                 ->get();
                 //->toArray();
-
-//        return $result;
-//        $model = new NewsPicture();
 
         return $result;
     }
