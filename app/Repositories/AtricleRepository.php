@@ -13,6 +13,7 @@ class AtricleRepository extends CoreRepository {
 
     private $commonColumns = [
                 'id',
+                'article_title',
                 'article_slug',
                 'article_excerpt',
                 'article_picture_preview_path',
@@ -48,8 +49,8 @@ class AtricleRepository extends CoreRepository {
             ->limit($limit)
             ->orderBy('id', 'DESC')
             //->toBase()
-            ->get()
-            ->toArray();
+            ->get();
+            //->toArray();
 
 
         return $result;
@@ -59,6 +60,8 @@ class AtricleRepository extends CoreRepository {
     public function getReadableArticles($limit = 7) {
 
         $where = 'is_published=1 AND published_at > (NOW() - INTERVAL 1 DAY)';
+
+        $where = 'is_published=1';
 
         $result = $this
             ->startConditions()
@@ -82,6 +85,7 @@ class AtricleRepository extends CoreRepository {
 
         $where = '(is_published=1) AND (is_main_news=0) AND 
         (id NOT IN('.$ids.'))';
+
 
         $result = $this
             ->startConditions()

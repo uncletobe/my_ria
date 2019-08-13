@@ -20,7 +20,6 @@ class HomeController extends Controller
 
 
     public function index() {
-        $title = 'РИА Новости - события в Москве, России и мире: темы дня, фото, видео, инфографика, радио';
 
         $mainArticles = $this->articleRepository->getMainNewsArticles();
         $readableArticles = $this->articleRepository->getReadableArticles();
@@ -38,8 +37,10 @@ class HomeController extends Controller
             abort(404);
         }
 
-        return view('news.home',
-            compact('title',
+        //dd($mainArticles);
+
+        return view('front.news.home',
+            compact(
                 'mainArticles',
                 'readableArticles',
                 'chessBoard',
