@@ -10,7 +10,7 @@ class BaseArticleModel extends Model
     public function getPublishedAtAttribute($valueFromObject)
     {
         return Carbon::parse($valueFromObject)->diffForHumans() . ", " .
-            date('h:m', strtotime($valueFromObject));
+            Carbon::parse($valueFromObject)->format('h:m');
     }
 
 }
