@@ -34,6 +34,7 @@ $factory->define(NewsArticle::class, function (Faker $faker) {
             'article_content_html' => $txt,
             'is_main_news' => $is_main_news,
             'article_picture_preview_path' => "path:\C:\\" . Str::slug($title, "\\"),
+            'alt' => $faker->sentence(rand(3, 10)),
             'is_published' => $isPublished,
             'published_at' => $isPublished ? $faker->dateTimeBetween('-10 day', 'now') : null,
             'is_recommend' => $is_recommend,

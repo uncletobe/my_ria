@@ -24,6 +24,7 @@ class CreateNewsArticlesTable extends Migration
             $table->text('article_content_html');
 
             $table->string('article_picture_preview_path');
+            $table->string('alt');
 
             $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();

@@ -13,13 +13,25 @@ use App\Models\News\NewsArticle;
 class AtricleRepository extends CoreRepository {
 
     private $commonColumns = [
-                'id',
-                'article_title',
-                'article_slug',
-                'article_excerpt',
-                'article_picture_preview_path',
-                'published_at',
-            ];
+            'id',
+            'article_title',
+            'article_slug',
+            'article_excerpt',
+            'article_picture_preview_path',
+            'published_at',
+        ];
+
+    private $sinleArticleColumns = [
+            'news_articles.id',
+            'article_title',
+            'article_content_html',
+            'views',
+            'published_at',
+            'tag_title',
+            'tag_slug',
+            'category_title',
+            'category_slug'
+        ];
 
     private $readAricleIds;
 
@@ -127,17 +139,17 @@ class AtricleRepository extends CoreRepository {
 
         $result = $this
             ->startConditions()
-            ->select($this->commonColumns)
+            ->select($this->sinleArticleColumns)
             ->where('article_slug', $articleSlug)
+            ->limit(1)
             ->with([
                 'newsPicture:id,article_id,news_picture_path',
-//                'articleTag' => function($query) {
-//                    $query->select(['article_id', 'tag_id'])
-//                        ->with(['tagName:id,parent_id,tag_title,tag_slug']);
-//                },
             ])
-            ->get()
-            ->toArray();
+            ->join('article_tags', 'article_tags.article_id', '=', 'news_articles.id')
+            ->join('news_tags', 'news_tags.id', '=', 'article_tags.tag_id')
+            ->join('news_categories', 'news_categories.id', '=', 'news_tags.parent_id')
+            ->get();
+            //->toArray();
 
         return $result;
     }

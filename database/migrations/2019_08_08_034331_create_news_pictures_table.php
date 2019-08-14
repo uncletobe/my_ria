@@ -17,6 +17,7 @@ class CreateNewsPicturesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('article_id')->unsigned();
             $table->string('news_picture_path')->nullable();
+            $table->string('alt')->nullable();
             $table->timestamps();
         });
 

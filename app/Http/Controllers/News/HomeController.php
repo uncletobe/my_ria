@@ -37,9 +37,7 @@ class HomeController extends Controller
             abort(404);
         }
 
-        //dd($mainArticles);
-
-        return view('front.news.home',
+        return view('front.news.home.home',
             compact(
                 'mainArticles',
                 'readableArticles',

@@ -9,7 +9,7 @@ use App\Models\News\NewsComment as Model;
  * Class AtricleRepository
  * @package App\Repositories
  */
-class AtricleRepository extends CoreRepository {
+class CommentRepository extends CoreRepository {
 
     private $commonColumns = [
                 'id',
@@ -33,7 +33,7 @@ class AtricleRepository extends CoreRepository {
         $result = $this
             ->startConditions()
             ->select($this->commonColumns)
-            ->whereIn('id', $id)
+            ->where('article_id', $id)
             ->with(['user:id,name,avatar'])
             ->get();
 

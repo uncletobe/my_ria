@@ -10,9 +10,4 @@ class ArticleTag extends Model
         return $this->hasOne('App\Models\News\NewsTag', 'id', 'tag_id');
     }
 
-    public function newsCategory() {
-        return $this->hasOneThrough('App\Models\News\NewsCategories',
-            'App\Models\News\NewsTag', 'parent_id', 'id');
-    }
-
 }
