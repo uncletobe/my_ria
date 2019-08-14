@@ -120,6 +120,28 @@ class AtricleRepository extends CoreRepository {
     }
 
 
+    public function getSingleArticle($articleSlug) {
+
+        $this->commonColumns[] = 'article_content_html';
+        $articleSlug = (string)$articleSlug;
+
+        $result = $this
+            ->startConditions()
+            ->select($this->commonColumns)
+            ->where('article_slug', $articleSlug)
+            ->with([
+                'newsPicture:id,article_id,news_picture_path',
+//                'articleTag' => function($query) {
+//                    $query->select(['article_id', 'tag_id'])
+//                        ->with(['tagName:id,parent_id,tag_title,tag_slug']);
+//                },
+            ])
+            ->get()
+            ->toArray();
+
+        return $result;
+    }
+
 }
 
 

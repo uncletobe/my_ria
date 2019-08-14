@@ -11,7 +11,7 @@
                                     {{ $news->published_at }}
                                 </span>
                                 <span class="item-info__share">
-                                    <a href="{{ $news->article_slug }}" data-name="twitter">
+                                    <a href="#" data-name="twitter">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                     <a href="#" data-name="facebook">
@@ -30,7 +30,7 @@
                                     </svg>
                                 </span>
                             </div>
-                            <a href="{{ $news->article_slug }}" class="author-block__body">
+                            <a href="/news/{{ $news->article_slug }}" class="author-block__body">
                                 <div class="author-block__image">
                                     <picture>
                                         <source

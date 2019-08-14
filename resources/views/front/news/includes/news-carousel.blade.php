@@ -29,7 +29,7 @@
                                 </svg>
                             </span>
                         </div>
-                        <a href="{{ $item->article_slug }}">
+                        <a href="/news/{{ $item->article_slug }}">
                             <img
                                 src="https://cdn23.img.ria.ru/images/150843/42/1508434266_0:264:5184:3180_480x0_80_0_0_8de2a3b662cf08dd832a31fb299a3413.jpg"
                                 alt=""

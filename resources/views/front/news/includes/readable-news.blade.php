@@ -33,7 +33,7 @@
                                     </svg>
                                 </span>
                             </div>
-                            <a href="{{ $readableArticles[$i]->article_slug }}" class="side-articles__item__body">
+                            <a href="/news/{{ $readableArticles[$i]->article_slug }}" class="side-articles__item__body">
                                 <span class="side-articles-item__title">
                                     {{ $readableArticles[$i]->article_title }}
                                 </span>
@@ -47,7 +47,7 @@
             <div class="top-news-block__photo--2 col-lg-8 col-md-12">
                 @for($i = 0; $i < 2; $i++)
                     <div class="top-news-block__photo__item">
-                        <a href="{{ $readableArticles[$i]->article_slug }}">
+                        <a href="/news/{{ $readableArticles[$i]->article_slug }}">
                             <div class="top-news-block__photo__item__title">
                                 <span>
                                     {{ $readableArticles[$i]->article_excerpt }}

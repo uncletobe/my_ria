@@ -271,6 +271,11 @@ function socialModalXY() {
     "right: auto;" +
     "opacity: 1;";
 
+    console.log('lect-click: ', coords.left,
+      'offsetWidth: ', socialBlock.offsetWidth,
+      'left: ', coords.left - socialBlock.offsetWidth + 16
+      );
+
   // console.log(
   // "top - ",
   // coords.top,

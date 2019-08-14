@@ -5,7 +5,7 @@
 
                 @for($i = 0; $i < 2; $i++)
                     <div class="top-news-block__photo__item">
-                        <a href="{{ $mainArticles[$i]->article_slug }}">
+                        <a href="/news/{{ $mainArticles[$i]->article_slug }}">
                             <div class="top-news-block__photo__item__title">
                             <span>
                                 {{ $mainArticles[$i]->article_title }}
@@ -87,7 +87,7 @@
                                     </svg>
                                 </span>
                             </div>
-                            <a href="{{ $mainArticles[$i]->article_slug }}" class="side-articles__item__body">
+                            <a href="/news/{{ $mainArticles[$i]->article_slug }}" class="side-articles__item__body">
                                 <span class="side-articles-item__title">
                                     {{ $mainArticles[$i]->article_excerpt }}
                                 </span>

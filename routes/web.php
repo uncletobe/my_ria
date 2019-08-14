@@ -16,3 +16,5 @@
 //});
 
 Route::get('/', 'News\HomeController@index')->name('home');
+
+Route::get('news/{articleSlug}', 'News\ArticleController@index')->name('article');

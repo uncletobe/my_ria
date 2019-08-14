@@ -32,7 +32,7 @@
                                             </svg>
                                         </span>
                                     </div>
-                                    <a href="{{ $chessBoard[$i]->article_slug }}">
+                                    <a href="/news/{{ $chessBoard[$i]->article_slug }}">
                                         <div class="chess-board__cell__body__image">
                                             <picture>
                                                 <source media="(min-width: 925px)"
@@ -81,7 +81,7 @@
                                             </svg>
                                         </span>
                                     </div>
-                                    <a href="{{ $chessBoard[$i]->article_slug }}" class="side-articles__item__body">
+                                    <a href="/news/{{ $chessBoard[$i]->article_slug }}" class="side-articles__item__body">
                                         <span class="side-articles-item__title">
                                             {{ $chessBoard[$i]->article_excerpt }}
                                         </span>
@@ -115,7 +115,7 @@
                                             </svg>
                                         </span>
                                     </div>
-                                    <a href="{{ $chessBoard[$i]->article_slug }}" class="side-articles__item__body">
+                                    <a href="/news/{{ $chessBoard[$i]->article_slug }}" class="side-articles__item__body">
                                         <span class="side-articles-item__title">
                                             {{ $chessBoard[$i]->article_excerpt }}
                                         </span>

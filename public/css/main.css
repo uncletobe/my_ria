@@ -770,6 +770,10 @@ a:hover {
     line-height: 37px;
 }
 
+.pointer {
+	width: 217.5px;
+}
+
 .pointer .share-more-block__list li a {
 	padding: 0 20px;
 }
@@ -786,7 +790,7 @@ a:hover {
 
 .share-more-block__icon {
 	float: right;
-	width: 26px;
+	width: 25px;
 	text-align: center;
 }
 
