@@ -30,10 +30,14 @@ class CommentRepository extends CoreRepository {
 
     public function getCommentsForArticle($id) {
 
+        $limit = 2;
+
         $result = $this
             ->startConditions()
             ->select($this->commonColumns)
             ->where('article_id', $id)
+            //->orderBy('like', 'DESC')
+            ->limit($limit)
             ->with(['user:id,name,avatar'])
             ->get();
 

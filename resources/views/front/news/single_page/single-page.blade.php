@@ -17,9 +17,9 @@
 
 @section('content')
 
-    @include('front.news.single_page.includes.article')
+    @include('front.news.single_page.includes.article', ['article', 'comments'])
 
-    @include('front.news.single_page.includes.recommend-carousel')
+    @include('front.news.single_page.includes.recommend-carousel', ['recommendCarousel'])
 
     <div class="article__sharebar">
         <a href="" class="auth-facebook" title="">

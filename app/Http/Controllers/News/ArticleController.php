@@ -25,13 +25,17 @@ class ArticleController extends Controller
            abort(404);
         }
 
-        $comments = $this->commentRepository->getCommentsForArticle($article[0]->id);
         $article = $article[0];
+        $comments = $this->commentRepository->getCommentsForArticle($article->id);
+        $recommendCarousel = $this->articleRepository->getArticlesForRecommendCarousel();
 
-        //dd($article);
+        //dd($comments);
+
         return view('front.news.single_page.single-page',
             compact(
                 'article',
-                'comments'));
+                'comments',
+                'recommendCarousel'
+                ));
     }
 }

@@ -480,6 +480,7 @@ function ArticleSharebarAbsolutePos(shareBar) {
 }
 
 function getStopForArticleSharebar() {
+  let topOffset = 300;
   if (window.innerWidth <= 767) return false;
 
   const botEl = document.querySelector(".recommend-carousel__title");
@@ -487,7 +488,11 @@ function getStopForArticleSharebar() {
 
   if (botEl) {
     const botElCoords = botEl.getBoundingClientRect();
-    stop = window.scrollY + botElCoords.top - 300;
+    const comments = document.querySelector('.comments');
+
+    if(!comments) topOffset = 343;
+
+    stop = window.scrollY + botElCoords.top - topOffset;
   }
 
   stopForArticleSharebar = stop;
@@ -495,14 +500,14 @@ function getStopForArticleSharebar() {
 
 function getArticleSharebarAbsolutePosLeft() {
   let result = "";
-  const comments = document.querySelector(".comments");
+  const article = document.querySelector(".article");
   const page = document.querySelector(".page");
 
-  const commentsXY = comments.getBoundingClientRect();
+  const articleXY = article.getBoundingClientRect();
   const pageXY = page.getBoundingClientRect();
 
   //console.log(`Comments left: ${commentsXY.left}, pageLeft: ${pageXY.left}`);
-  result = Math.abs(pageXY.left - commentsXY.left) - 80 + "px";
+  result = Math.abs(pageXY.left - articleXY.left) - 80 + "px";
 
   return result;
 }

@@ -33,6 +33,7 @@ class AtricleRepository extends CoreRepository {
             'category_slug'
         ];
 
+
     private $readAricleIds;
 
 
@@ -150,6 +151,18 @@ class AtricleRepository extends CoreRepository {
             ->join('news_categories', 'news_categories.id', '=', 'news_tags.parent_id')
             ->get();
             //->toArray();
+
+        return $result;
+    }
+
+    public function getArticlesForRecommendCarousel($limit = 18) {
+
+        $result = $this
+            ->startConditions()
+            ->select($this->commonColumns)
+            ->orderBy('published_at', 'DESC')
+            ->limit($limit)
+            ->get();
 
         return $result;
     }
