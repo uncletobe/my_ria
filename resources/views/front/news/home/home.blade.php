@@ -4,10 +4,6 @@
 РИА Новости - события в Москве, России и мире: темы дня, фото, видео, инфографика, радио
 @endsection
 
-@section('header')
-    @include('front.layouts.header-main')
-@endsection
-
 @section('content')
 
     @include('front.news.home.includes.main-news', ['mainArticles'])

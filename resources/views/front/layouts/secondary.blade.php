@@ -8,9 +8,7 @@
     <title>@yield('title')</title>
 
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/plugins/fontawesome-free-5.9.0/css/all.min.css">
-    <link rel="stylesheet" href="/plugins/owlcarousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/plugins/owlcarousel/css/owl.theme.default.min.css">
+    @yield('styles')
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/responsive.css">
 </head>
@@ -26,17 +24,25 @@
               d="M34.836 18.13c0 7.18-5.82 13-13 13a12.94 12.94 0 0 1-7.546-2.413l-.217.22L7.708 35.3c-.33.329-.494.493-.665.592a1.5 1.5 0 0 1-1.5 0c-.17-.099-.335-.263-.664-.592-.329-.329-.493-.493-.592-.664a1.5 1.5 0 0 1 0-1.5c.099-.171.263-.336.592-.664l6.364-6.364.186-.185a12.942 12.942 0 0 1-2.594-7.793c0-7.18 5.82-13 13-13s13 5.82 13 13zm-4.044-.096a9.148 9.148 0 1 1-18.297 0 9.148 9.148 0 0 1 18.297 0z">
         </path>
     </svg>
+    @yield('svg')
 </div>
 
 <div class="super-container" id="app">
 
-    @include('front.layouts.header-main')
+    @include('front.layouts.header-secondary')
 
-    <div class="main-content container">
-        @yield('content')
+    <div class="main-content nt container">
+        <div class="row justify-content-center d-flex">
+            <div class="col-xl-12 col-md-12 page">
+
+                @include('front.layouts.page-hat')
+
+                @yield('content')
+            </div>
+        </div>
     </div>
 
-    @include('front.layouts.footer')
+    @yield('footer')
 
     @include('front.layouts.utilites')
 
@@ -44,7 +50,7 @@
 
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/plugins/owlcarousel/js/owl.carousel.min.js"></script>
+    @yield('scripts')
     <script src="/js/main.js"></script>
 
 </body>

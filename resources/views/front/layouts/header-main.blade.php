@@ -1,4 +1,6 @@
-<header id="header-main">
+<div class="container">
+    <div class="row">
+        <header id="header-main">
     <div class="header">
         <div class="header__logo">
             <a href="/" title="">
@@ -43,3 +45,5 @@
         </div>
     </div>
 </header>
+    </div>
+</div>
