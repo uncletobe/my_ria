@@ -86,6 +86,23 @@
                 </a>
             </div>
 
+            @if(!empty($tags))
+                <div class="article-tags-block">
+
+                    @foreach($tags as $tag)
+                        <a href="/category/{{ $tag[0]->category_slug }}">
+                            {{ $tag[0]->category_title }}
+                        </a>
+                        @foreach($tag as $subtag)
+                            <a href="/tag/{{ $subtag->tag_slug }}">
+                                {{ $subtag->tag_title }}
+                            </a>
+                        @endforeach
+                    @endforeach
+
+                </div>
+            @endif
+
             @include('front.news.single_page.includes.popular-comments',
             ['comments'])
         </div>

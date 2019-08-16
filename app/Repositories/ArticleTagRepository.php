@@ -9,7 +9,7 @@ use App\Models\News\ArticleTag as Model;
  * Class AtricleRepository
  * @package App\Repositories
  */
-class AtricleTagRepository extends CoreRepository {
+class ArticleTagRepository extends CoreRepository {
 
     private $commonColumns = [
                 'article_id',
@@ -36,10 +36,11 @@ class AtricleTagRepository extends CoreRepository {
             ->startConditions()
             ->select($this->commonColumns)
             ->where('article_id', $id)
-            ->join('news_tags', 'news_tags.id', '=', 'article_tags.tag_id')
-            ->join('news_categories', 'news_categories.id', '=', 'news_tags.parent_id')
+            ->leftJoin('news_tags', 'news_tags.id', '=', 'article_tags.tag_id')
+            ->leftJoin('news_categories', 'news_categories.id', '=', 'news_tags.parent_id')
             ->get()
-            ->toArray();
+            ->groupBy('category_title');
+            //->toArray();
 
         return $result;
     }

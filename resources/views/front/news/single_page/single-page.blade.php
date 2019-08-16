@@ -17,7 +17,12 @@
 
 @section('content')
 
-    @include('front.news.single_page.includes.article', ['article', 'comments'])
+    @include('front.news.single_page.includes.article',
+    [
+    'article',
+    'comments',
+    'tags'
+    ])
 
     @include('front.news.single_page.includes.recommend-carousel', ['recommendCarousel'])
 

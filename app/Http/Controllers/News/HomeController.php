@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\News;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\AtricleRepository;
+use App\Repositories\ArticleRepository;
 use App\Repositories\AuthorArticleRepository;
 
 class HomeController extends Controller
@@ -14,7 +13,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->articleRepository = new AtricleRepository();
+        $this->articleRepository = new ArticleRepository();
         $this->authorArticleRepository = new AuthorArticleRepository();
     }
 

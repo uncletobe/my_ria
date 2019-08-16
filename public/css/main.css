@@ -1285,6 +1285,43 @@ a:hover {
     border-radius: 7px;
 }
 
+.assessment-block {
+	display: flex;
+	justify-content: center;
+	padding: 2px 20px;
+	margin: 40px 0;
+	text-align: center;
+	background: #F2F2F2;
+	height: 70px;
+	border-radius: 7px;
+}
+
+.article-tags-block {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.article-tags-block a {
+	border: 1px solid #bcbcbc;
+	border-radius: 3px;
+	white-space: nowrap;
+	color: #4B4B4B;
+	padding: 5px 6px;
+	margin: 0 5px 5px 0;
+	font-size: 11px;
+	line-height: 13px;
+	white-space: nowrap;
+	font-weight: 600;
+}
+
+.article-tags-block a:hover {
+	color: unset;
+	background-color: rgba(0,0,0,0.1);
+}
+
+
 .assessment-tape {
     display: none;
     /*position: absolute;*/
@@ -1468,6 +1505,7 @@ a:hover {
 .comments {
 	position: relative;
 	padding: 20px 20px 80px;
+	margin-top: 40px;
 	box-shadow: rgba(32,33,36,0.28) 0px 1px 6px;
 	border-radius: 7px;
 }

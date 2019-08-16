@@ -7,34 +7,22 @@ use App\Models\News\NewsArticle;
 
 
 /**
- * Class AtricleRepository
+ * Class ArticleRepository
  * @package App\Repositories
  */
-class AtricleRepository extends CoreRepository {
+class ArticleRepository extends CoreRepository {
 
     private $commonColumns = [
-            'id',
-            'article_title',
-            'article_slug',
-            'article_excerpt',
-            'article_picture_preview_path',
-            'published_at',
-        ];
-
-    private $sinleArticleColumns = [
-            'news_articles.id',
-            'article_title',
-            'article_content_html',
-            'views',
-            'published_at',
-            'tag_title',
-            'tag_slug',
-            'category_title',
-            'category_slug'
-        ];
+        'id',
+        'article_title',
+        'article_slug',
+        'article_excerpt',
+        'article_picture_preview_path',
+        'published_at',
+    ];
 
 
-    private $readAricleIds;
+    private $readArticleIds;
 
 
     /**
@@ -83,7 +71,7 @@ class AtricleRepository extends CoreRepository {
             ->get();
 
         if ($result) {
-            $this->readAricleIds = $result->pluck('id')->toArray();
+            $this->readArticleIds = $result->pluck('id')->toArray();
         }
 
         return $result;
@@ -91,7 +79,7 @@ class AtricleRepository extends CoreRepository {
 
     public function getArticlesForChessBoard($limit = 18) {
 
-        $ids = implode(',', $this->readAricleIds);
+        $ids = implode(',', $this->readArticleIds);
 
         $where = '(is_published=1) AND (is_main_news=0) AND 
         (id NOT IN('.$ids.'))';
@@ -140,17 +128,14 @@ class AtricleRepository extends CoreRepository {
 
         $result = $this
             ->startConditions()
-            ->select($this->sinleArticleColumns)
+            ->select($this->commonColumns)
             ->where('article_slug', $articleSlug)
             ->limit(1)
             ->with([
                 'newsPicture:id,article_id,news_picture_path',
             ])
-            ->join('article_tags', 'article_tags.article_id', '=', 'news_articles.id')
-            ->join('news_tags', 'news_tags.id', '=', 'article_tags.tag_id')
-            ->join('news_categories', 'news_categories.id', '=', 'news_tags.parent_id')
             ->get();
-            //->toArray();
+        //->toArray();
 
         return $result;
     }
