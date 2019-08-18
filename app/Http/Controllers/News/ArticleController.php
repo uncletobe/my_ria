@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ArticleTagRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\CommentRepository;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {

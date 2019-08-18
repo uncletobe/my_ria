@@ -40,4 +40,12 @@ class User extends Authenticatable
 //    public function authorArticle() {
 //        return $this->hasMany('App\Models\News\AuthorArticle', 'author_id', 'id');
 //    }
+
+    public static function getUserImgPath($path) {
+
+        $storagePath = asset('/storage/uploads/avatars');
+        $path = $storagePath . '/' . $path . '.jpg';
+
+        return $path;
+    }
 }

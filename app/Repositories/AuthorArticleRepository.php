@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\News\AuthorArticle as Model;
-use App\Models\News\NewsPicture;
 
 
 /**
@@ -38,7 +37,7 @@ class AuthorArticleRepository extends CoreRepository {
                 ->select($this->commonColumns)
                 ->orderBy('id', 'DESC')
                 ->limit($limit)
-                ->with(['user:id,name'])
+                ->with(['user:id,name,avatar'])
                 ->get();
                 //->toArray();
 

@@ -35,16 +35,26 @@
                                     <a href="/news/{{ $chessBoard[$i]->article_slug }}">
                                         <div class="chess-board__cell__body__image">
                                             <picture>
-                                                <source media="(min-width: 925px)"
-                                                    srcset="https://cdn24.img.ria.ru/images/155607/54/1556075466_14:0:1014:1000_480x0_80_0_0_ceb8d316213db4a6e1d07d869d0848cf.jpg">
-                                                <source media="(min-width: 768px)"
-                                                    srcset="https://cdn23.img.ria.ru/images/155607/54/1556075466_0:160:1201:460_925x0_80_0_0_ae58c37dfbd8fc9ef89113477715ff63.jpg">
-                                                <source media="(min-width: 640px)"
-                                                    srcset="https://cdn23.img.ria.ru/images/155607/54/1556075466_0:96:1200:771_768x0_80_0_0_5196d758afbb9a66c246e6c16c38a748.jpg">
-                                                <source media="(min-width: 480px)"
-                                                    srcset="https://cdn23.img.ria.ru/images/155607/54/1556075466_0:0:1201:900_640x0_80_0_0_95a0d74a45a9a01f0112dc03ffd969fe.jpg">
-                                                <source media="(min-width: 0px)"
-                                                    srcset="https://cdn24.img.ria.ru/images/155607/54/1556075466_14:0:1014:1000_480x0_80_0_0_ceb8d316213db4a6e1d07d869d0848cf.jpg">
+                                                <source media="(min-width: 925px)" type="image/jpg"
+                                                        srcset="{{ $chessBoard[$i]->getPicPathByRes(
+                                                            $chessBoard[$i]->article_picture_preview_path, 'min'
+                                                        ) }}">
+                                                <source media="(min-width: 768px)" type="image/jpg"
+                                                        srcset="{{ $chessBoard[$i]->getPicPathByRes(
+                                                            $chessBoard[$i]->article_picture_preview_path, 768
+                                                        ) }}">
+                                                <source media="(min-width: 640px)" type="image/jpg"
+                                                        srcset="{{ $chessBoard[$i]->getPicPathByRes(
+                                                            $chessBoard[$i]->article_picture_preview_path, 640
+                                                        ) }}">
+                                                <source media="(min-width: 480px)" type="image/jpg"
+                                                        srcset="{{ $chessBoard[$i]->getPicPathByRes(
+                                                            $chessBoard[$i]->article_picture_preview_path, 480
+                                                        ) }}">
+                                                <source media="(min-width: 0px)" type="image/jpg"
+                                                        srcset="{{ $chessBoard[$i]->getPicPathByRes(
+                                                            $chessBoard[$i]->article_picture_preview_path, 'min'
+                                                        ) }}">
                                                 <img src="img/default.jpg" alt="">
                                             </picture>
                                         </div>

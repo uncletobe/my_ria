@@ -490,7 +490,7 @@ function getStopForArticleSharebar() {
     const botElCoords = botEl.getBoundingClientRect();
     const comments = document.querySelector('.comments');
 
-    if(!comments) topOffset = 343;
+    if(!comments) topOffset = 375;
 
     stop = window.scrollY + botElCoords.top - topOffset;
   }

@@ -14,15 +14,25 @@
                             <div class="top-news-block__photo__item__image">
                                 <picture>
                                     <source media="(min-width: 925px)" type="image/jpg"
-                                            srcset="https://cdn21.img.ria.ru/images/155610/79/1556107966_81:333:2919:1929_925x0_80_0_0_e976422f702c752d95e0403c2079d322.jpg">
+                                            srcset="{{ $mainArticles[$i]->getPicPathByRes(
+                                                $mainArticles[$i]->article_picture_preview_path, 925
+                                            ) }}">
                                     <source media="(min-width: 768px)" type="image/jpg"
-                                            srcset="https://cdn22.img.ria.ru/images/155610/79/1556107966_0:698:3072:1466_925x0_80_0_0_df2417a0476b62192c60a34c70384b51.jpg">
+                                            srcset="{{ $mainArticles[$i]->getPicPathByRes(
+                                                $mainArticles[$i]->article_picture_preview_path, 768
+                                            ) }}">
                                     <source media="(min-width: 640px)" type="image/jpg"
-                                            srcset="https://cdn21.img.ria.ru/images/155610/79/1556107966_81:333:2919:1929_768x0_80_0_0_33ed53fb093d6ea4e8450d0b77a8b132.jpg">
+                                            srcset="{{ $mainArticles[$i]->getPicPathByRes(
+                                                $mainArticles[$i]->article_picture_preview_path, 640
+                                            ) }}">
                                     <source media="(min-width: 480px)" type="image/jpg"
-                                            srcset="https://cdn21.img.ria.ru/images/155610/79/1556107966_376:317:2684:2048_640x0_80_0_0_63269893733f82e3ccb60fb720c45e4d.jpg">
+                                            srcset="{{ $mainArticles[$i]->getPicPathByRes(
+                                                $mainArticles[$i]->article_picture_preview_path, 480
+                                            ) }}">
                                     <source media="(min-width: 0px)" type="image/jpg"
-                                            srcset="https://cdn22.img.ria.ru/images/155610/79/1556107966_692:248:2492:2048_480x0_80_0_0_ac5876a8d343521f0ce29bffd46564dc.jpg">
+                                            srcset="{{ $mainArticles[$i]->getPicPathByRes(
+                                                $mainArticles[$i]->article_picture_preview_path, 'min'
+                                            ) }}">
                                     <img src="img/default.jpg" alt="">
                                 </picture>
                             </div>

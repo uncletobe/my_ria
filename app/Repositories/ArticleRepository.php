@@ -100,7 +100,7 @@ class ArticleRepository extends CoreRepository {
 
     public function getArticlesForNewsCarousel($limit = 6) {
 
-        $ids = implode(',', $this->readAricleIds);
+        $ids = implode(',', $this->readArticleIds);
 
 //        $where = ('(is_published=1) AND (is_main_news=0) AND
 //                    (published_at > (NOW() - INTERVAL 1 DAY)) AND

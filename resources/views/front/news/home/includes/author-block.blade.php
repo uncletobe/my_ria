@@ -35,11 +35,15 @@
                                     <picture>
                                         <source
                                             media="(min-width: 480px)"
-                                            srcset="https://cdn21.img.ria.ru/images/155627/00/1556270064_0:186:3106:1933_480x0_80_0_0_de5abe3c8d0031c80dd4fc532a61b4f7.jpg"
+                                            srcset="{{ $news->getPicPathByRes(
+                                                $news->article_picture_preview_path, 480
+                                            ) }}"
                                         />
                                         <source
                                             media="(min-width: 0px)"
-                                            srcset="https://cdn23.img.ria.ru/images/155627/00/1556270064_375:0:3106:2048_480x0_80_0_0_aa45a3def432b7d226454bf8feb4ebce.jpg"
+                                            srcset="{{ $news->getPicPathByRes(
+                                                $news->article_picture_preview_path, 'min'
+                                            ) }}"
                                         />
                                         <img src="img/default.jpg" alt="" />
                                     </picture>
@@ -51,7 +55,7 @@
                             <a href="" class="author-block__author-info">
                                 <span class="author-info__image">
                                     <img
-                                        src="https://cdn23.img.ria.ru/images/149146/47/1491464723_169:0:635:464_100x100_80_0_0_0d0a8dc8ee18d16fcff91bf773c34b68.jpg"
+                                        src="{{ $news->getUserAvatar($news->user->avatar) }}"
                                         alt=""
                                     />
                                 </span>

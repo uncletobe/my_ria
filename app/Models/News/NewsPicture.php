@@ -9,4 +9,5 @@ class NewsPicture extends Model
     public function newsArticle() {
         return $this->hasOne('App\Models\News\NewsArticle', 'id', 'article_id');
     }
+
 }
