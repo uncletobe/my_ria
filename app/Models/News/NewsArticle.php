@@ -2,12 +2,14 @@
 
 namespace App\Models\News;
 
+use App\components\PictureHelper;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\components\Storage;
 
 class NewsArticle extends BaseArticleModel
 {
     use SoftDeletes;
+    use PictureHelper;
 
     const PICTURE_EXTENSION = '.jpg';
 
@@ -28,21 +30,7 @@ class NewsArticle extends BaseArticleModel
         return $this->hasMany('App\Models\News\NewsComment', 'article_id');
     }
 
-
     public function articleTag() {
         return $this->hasMany('App\Models\News\ArticleTag', 'article_id');
     }
-
-    public function getPicPathByRes($path, $res) {
-
-        $storagePath = asset('/storage/uploads/preview');
-        $picName = $storagePath . '/' . $path . $this->resolution[$res] . self::PICTURE_EXTENSION;
-
-        if (!Storage::isImgExist($path)) {
-            return Storage::getDefaultimg();
-        }
-
-        return $picName;
-    }
-
 }

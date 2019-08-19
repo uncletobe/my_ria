@@ -2,11 +2,14 @@
 
 namespace App\Models\News;
 
+use App\components\PictureHelper;
 use App\Models\User;
 use App\components\Storage;
 
 class AuthorArticle extends BaseArticleModel
 {
+    use PictureHelper;
+
     const PICTURE_EXTENSION = '.jpg';
 
     private $resolution = [
@@ -31,25 +34,4 @@ class AuthorArticle extends BaseArticleModel
         return $this->hasMany('App\Models\News\ArticleTag', 'article_id');
     }
 
-    public function getPicPathByRes($path, $res) {
-
-        $storagePath = asset('/storage/uploads/preview');
-        $picPath = $storagePath . '/' . $path . $this->resolution[$res] . self::PICTURE_EXTENSION;
-
-        if (!Storage::isImgExist($picPath)) {
-            return Storage::getDefaultimg();
-        }
-
-        return $picPath;
-    }
-
-    public function getUserAvatar($path) {
-        $picPath = User::getUserImgPath($path);
-
-        if (!Storage::isImgExist($picPath)) {
-            return Storage::getDefaultimg();
-        }
-
-        return $picPath;
-    }
 }

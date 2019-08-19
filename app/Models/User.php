@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\components\PictureHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,6 +11,9 @@ use App\components\Storage;
 class User extends Authenticatable
 {
     use Notifiable;
+    use PictureHelper;
+
+    const PICTURE_EXTENSION = '.jpg';
 
     /**
      * The attributes that are mass assignable.
@@ -42,17 +46,6 @@ class User extends Authenticatable
 //        return $this->hasMany('App\Models\News\AuthorArticle', 'author_id', 'id');
 //    }
 
-    public static function getUserImgPath($path) {
-
-        $storagePath = asset('/storage/uploads/avatars');
-        $picPath = $storagePath . '/' . $path . '.jpg';
-
-        if (!Storage::isImgExist($picPath)) {
-            return Storage::getDefaultimg();
-        }
-
-        return $picPath;
-    }
 
     public function getUserName() {
         if (empty($this->name)) {
@@ -62,7 +55,4 @@ class User extends Authenticatable
         return $this->name;
     }
 
-    public function getAvatar() {
-        return self::getUserImgPath($this->avatar);
-    }
 }

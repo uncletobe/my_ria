@@ -33,8 +33,6 @@ class ArticleController extends Controller
         $comments = $this->commentRepository->getCommentsForArticle($article->id);
         $recommendCarousel = $this->articleRepository->getArticlesForRecommendCarousel();
 
-        //dd($tags);
-
         return view('front.news.single_page.single-page',
             compact(
                 'article',

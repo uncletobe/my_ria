@@ -844,7 +844,25 @@ a:hover {
 
 /** 9.1 Auth window */
 
-.auth-window, .search-window {
+@-webkit-keyframes fadeout {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes fadeout {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+.fadeOut {
+ 	-moz-animation   : fadeout 300ms linear;
+ 	-webkit-animation: fadeout 300ms linear;
+ 	animation        : fadeout 300ms linear;
+}
+
+.auth-window,
+.search-window,
+.restore-window,
+.register-window
+{
 	display: none;
     flex-direction: row;
 	position: fixed;

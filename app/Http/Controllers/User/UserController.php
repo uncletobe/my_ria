@@ -24,15 +24,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-//        $faker = \Faker\Factory::create();
-//        $users = User::get();
-//
-//        for($i = 0; $i < 100; $i++) {
-//            $users[$i]->avatar = $faker->imageUrl($width = 200, $height = 200, 'cats');
-//            $users[$i]->save();
-//        }
-//
-
         $user = $this->userRepository->getUserById($id);
 
         if (!isset($user)) {

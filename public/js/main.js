@@ -10,17 +10,21 @@ document.addEventListener("DOMContentLoaded", () => {
   initCloseAuthorWindow();
   initCloseSearchModal();
   initCloseSearchModalIcon();
-  InitHiddenHeader();
-  InitRecommendCarousel();
-  InitFancyBox();
-  InitCloseSocialBlockOnFancyBox();
+  initHiddenHeader();
+  initRecommendCarousel();
+  initFancyBox();
+  initCloseSocialBlockOnFancyBox();
+  initRegisterBtn();
+  initRestorePwdBtn();
+  initAuthBtn();
+  initFormBackBtn();
 });
 
 window.onload = function() {
   getStopForArticleSharebar();
   initArticleSharebar();
   initArticleSharebarMoreBtn();
-  InitCommentLikeBtn();
+  initCommentLikeBtn();
 };
 
 var targetModal;
@@ -271,10 +275,10 @@ function socialModalXY() {
     "right: auto;" +
     "opacity: 1;";
 
-    console.log('lect-click: ', coords.left,
-      'offsetWidth: ', socialBlock.offsetWidth,
-      'left: ', coords.left - socialBlock.offsetWidth + 16
-      );
+    // console.log('lect-click: ', coords.left,
+    //   'offsetWidth: ', socialBlock.offsetWidth,
+    //   'left: ', coords.left - socialBlock.offsetWidth + 16
+    //   );
 
   // console.log(
   // "top - ",
@@ -316,14 +320,15 @@ function initAuthIcon() {
 }
 
 function initCloseAuthorWindow() {
-  const closeIcon = document.querySelector(".close-auth-window");
-  const authWindow = document.querySelector(".auth-window");
+  const closeIcons = document.querySelectorAll(".close-auth-window");
 
-  if (authWindow) {
-    closeIcon.onclick = function() {
-      closeModalWindow();
-      authWindow.style.display = "none";
-    };
+  if(closeIcons.length > 0) {
+    closeIcons.forEach(function(element, index) {
+      element.onclick = (e) => {
+        element.parentNode.parentNode.style.display = 'none';
+        closeModalWindow();
+      }
+    });
   }
 }
 
@@ -366,7 +371,7 @@ function initCloseSearchModalIcon() {
   });
 }
 
-function InitHiddenHeader() {
+function initHiddenHeader() {
   const hHeader = document.querySelector(".hidden-header");
 
   if (hHeader) {
@@ -570,7 +575,7 @@ function hideArticleSharebarSocialBlock(socialBlock) {
   }
 }
 
-function InitRecommendCarousel() {
+function initRecommendCarousel() {
   const recommendCarousel = $("#recommend-carousel");
 
   if (recommendCarousel && recommendCarousel.length) {
@@ -606,7 +611,7 @@ function InitRecommendCarousel() {
   }
 }
 
-function InitFancyBox() {
+function initFancyBox() {
   const img = $(".article__img");
 
   if (img.length) {
@@ -618,7 +623,7 @@ function InitFancyBox() {
   }
 }
 
-function InitCloseSocialBlockOnFancyBox() {
+function initCloseSocialBlockOnFancyBox() {
   const img = document.querySelector(".article__img img");
   const menu = document.querySelector(".header__menu");
 
@@ -666,7 +671,7 @@ function openCloseSocialBlockOnFB() {
   }
 }
 
-function InitCommentLikeBtn() {
+function initCommentLikeBtn() {
   let likeBtns = document.querySelectorAll(".comment__like-btn");
   const tape = document.querySelector(".assessment-tape");
 
@@ -720,5 +725,59 @@ function clearAssessTape(tape) {
 function hideCommentLikeBtn(e, tape) {
   if (!tape.contains(e.target) && !e.target.closest(".comment__like-btn")) {
     clearAssessTape(tape);
+  }
+}
+
+function initRegisterBtn() {
+  const regBtn = document.querySelector('.register-btn');
+  const regWindow = document.querySelector('.register-window');
+  const authWindow = document.querySelector('.auth-window');
+
+  if (regBtn) {
+    regBtn.onclick = (e) => {
+      e.preventDefault();
+      authWindow.style.display = 'none';
+      regWindow.style.display = 'flex';
+    }
+  }
+}
+
+function initRestorePwdBtn() {
+  const pwdBtn = document.querySelector('.restore-password-btn');
+  const authWindow = document.querySelector('.auth-window');
+  const resWindow = document.querySelector('.restore-window');
+
+  if (pwdBtn) {
+    pwdBtn.onclick = (e) => {
+      e.preventDefault();
+      authWindow.style.display = 'none';
+      resWindow.style.display = 'flex';
+    }
+  }
+}
+
+function initAuthBtn() {
+  const authBtn = document.querySelector('.auth-btn');
+  const regWindow = document.querySelector('.register-window');
+
+  backToAuthWindow(authBtn, regWindow);
+}
+
+function initFormBackBtn() {
+  const backBtn = document.querySelector('.form-btn-back');
+  const resWindow = document.querySelector('.restore-window');
+
+  backToAuthWindow(backBtn, resWindow);
+}
+
+function backToAuthWindow(btn, activeWindow) {
+const authWindow = document.querySelector('.auth-window');
+
+  if (btn) {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      activeWindow.style.display = 'none';
+      authWindow.style.display = 'flex';
+    }
   }
 }

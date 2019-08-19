@@ -37,62 +37,6 @@
     </ul>
 </div>
 
-<div class="auth-window">
-    <div class="auth-window--block">
-        <div class="auth-window__title">
-            <h2>Вход на сайт</h2>
-        </div>
-        <div class="auth-window__body">
-            <form>
-                <div class="form-group">
-                    <input
-                        type="email"
-                        class="form-control form-control-lg"
-                        id="exampleInputEmail1"
-                        placeholder="Почта"
-                        required="required"
-                    />
-                </div>
-                <div class="form-group">
-                    <input
-                        type="password"
-                        class="form-control form-control-lg"
-                        id="exampleInputPassword1"
-                        placeholder="Пароль"
-                        required="required"
-                    />
-                </div>
-                <div class="enter-btn-block">
-                    <button type="submit" class="form-btn">Войти</button>
-                </div>
-            </form>
-            <div class="restore-password">
-                <a class="restore-password-btn" href="">Восстановить пароль</a>
-            </div>
-            <div class="auth-social">
-                <a href="" class="auth-facebook" title="">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="auth-vk" title="">
-                    <i class="fab fa-vk"></i>
-                </a>
-                <a href="" class="auth-ok" title="">
-                    <i class="fab fa-odnoklassniki"></i>
-                </a>
-                <a href="" class="auth-google" title="">
-                    <i class="fab fa-google"></i>
-                </a>
-            </div>
-            <div class="register">
-                <a href="" class="register-btn">Зарегистрироваться</a>
-            </div>
-        </div>
-        <div class="close-auth-window">
-            <i class="fas fa-times"></i>
-        </div>
-    </div>
-</div>
-
 <div class="search-window">
     <div class="search-window-body">
         <input
