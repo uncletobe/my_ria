@@ -30,7 +30,7 @@
                                     </svg>
                                 </span>
                             </div>
-                            <a href="/news/{{ $news->article_slug }}" class="author-block__body">
+                            <a href="/author-article/{{ $news->article_slug }}" class="author-block__body">
                                 <div class="author-block__image">
                                     <picture>
                                         <source

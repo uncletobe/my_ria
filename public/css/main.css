@@ -18,6 +18,7 @@
   10.1 Assessment block
   10.2 Comments
   10.3 Recommend carousel
+11. Profile page
 
 */
 
@@ -579,6 +580,7 @@ a:hover {
 
 .author-info__image img {
 	width: 100%;
+	height: 100%;
 }
 
 /** 8. Footer */
@@ -1196,7 +1198,7 @@ a:hover {
 
 .page {
 	background-color: #fff;
-	padding-bottom: 500px;
+	padding-bottom: 60px;
 }
 
 .policy {
@@ -1707,4 +1709,98 @@ a:hover {
 
 .fancybox-inner .item-info-block {
 	z-index: 99996;
+}
+
+/** 11. Profile Page */
+
+.profile {
+	padding-bottom: 60px;
+}
+
+.profile-head {
+	position: relative;
+	padding-top: 60px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+.avatar-bg {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.avatar-bg:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(217,217,217,0.8)), to(rgba(217,217,217,0.8)));
+	background: -webkit-linear-gradient(bottom, rgba(217,217,217,0.8), rgba(217,217,217,0.8));
+	background: -moz-linear-gradient(bottom, rgba(217,217,217,0.8), rgba(217,217,217,0.8));
+	background: linear-gradient(0deg, rgba(217,217,217,0.8), rgba(217,217,217,0.8));
+}
+
+.user-avatar {
+	display: block;
+	position: relative;
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	margin: 0px auto 20px;
+	text-align: center;
+}
+
+.user-avatar img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%
+}
+
+.user-name,
+.user-stats__item-value
+{
+	text-align: center;
+	font-size: 48px;
+	font-weight: bold;
+}
+
+.user-stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 50px;
+}
+
+.user-stats__item {
+	text-align: center;
+	width: 33.3%;
+}
+
+.user-stats__item-value {
+	color: #333333;
+	line-height: 60px;
+}
+
+.user-stats__item span {
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 20px;
+}
+
+.under-head {
+	padding: 0;
+	top: 60px;
+}
+
+.under-content {
+	top: 60px;
 }

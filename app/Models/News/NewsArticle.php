@@ -3,6 +3,7 @@
 namespace App\Models\News;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\components\Storage;
 
 class NewsArticle extends BaseArticleModel
 {
@@ -36,6 +37,10 @@ class NewsArticle extends BaseArticleModel
 
         $storagePath = asset('/storage/uploads/preview');
         $picName = $storagePath . '/' . $path . $this->resolution[$res] . self::PICTURE_EXTENSION;
+
+        if (!Storage::isImgExist($path)) {
+            return Storage::getDefaultimg();
+        }
 
         return $picName;
     }

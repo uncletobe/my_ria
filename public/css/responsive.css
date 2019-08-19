@@ -348,6 +348,14 @@
 		padding-bottom: 20px;
 	}
 
+	.under-head {
+		top: 45px;
+	}
+
+	.under-content {
+		top: 45px;
+	}
+
 }
 
 /************
@@ -363,6 +371,16 @@
 	.brand-logo {
 		height: 60px;
 		width: 259px;
+	}
+
+	.user-avatar img {
+		width: 140px;
+		height: 140px;
+	}
+
+	.user-name,
+	.user-stats__item-value {
+		font-size: 32px;
 	}
 }
 

@@ -24,7 +24,7 @@
                     </span>
                 </div>
                 <div class="comment__author-block">
-                    <a href="/user/{{ $comment->user->id }}">
+                    <a href="/user/id/{{ $comment->user->id }}">
                         <span class="comment__author__image">
                             <img src="/img/default.jpg" alt="" />
                         </span>
@@ -60,7 +60,7 @@
                     </span>
                 </div>
                 <div class="comment__author-block">
-                    <a href="/user/{{ $comments[0]->user->id }}">
+                    <a href="/user/id/{{ $comments[0]->user->id }}">
                         <span class="comment__author__image">
                             <img src="/img/default.jpg" alt="" />
                         </span>

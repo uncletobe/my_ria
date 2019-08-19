@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\components\Storage;
 
 class User extends Authenticatable
 {
@@ -44,8 +45,24 @@ class User extends Authenticatable
     public static function getUserImgPath($path) {
 
         $storagePath = asset('/storage/uploads/avatars');
-        $path = $storagePath . '/' . $path . '.jpg';
+        $picPath = $storagePath . '/' . $path . '.jpg';
 
-        return $path;
+        if (!Storage::isImgExist($picPath)) {
+            return Storage::getDefaultimg();
+        }
+
+        return $picPath;
+    }
+
+    public function getUserName() {
+        if (empty($this->name)) {
+           return $this->email;
+        }
+
+        return $this->name;
+    }
+
+    public function getAvatar() {
+        return self::getUserImgPath($this->avatar);
     }
 }
