@@ -21,7 +21,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'avatar',
+        'role_id'
     ];
 
     /**
@@ -46,6 +50,9 @@ class User extends Authenticatable
 //        return $this->hasMany('App\Models\News\AuthorArticle', 'author_id', 'id');
 //    }
 
+    public function create() {
+
+    }
 
     public function getUserName() {
         if (empty($this->name)) {
@@ -54,5 +61,6 @@ class User extends Authenticatable
 
         return $this->name;
     }
+
 
 }

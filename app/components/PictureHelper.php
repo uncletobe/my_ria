@@ -3,6 +3,7 @@
 namespace App\components;
 
 use App\components\Storage;
+use App\components\Constants;
 
 trait PictureHelper {
 
@@ -11,7 +12,7 @@ trait PictureHelper {
 
     public function getPicPathByRes($path, $res) {
 
-        $picPath = $path . $this->resolution[$res] . self::PICTURE_EXTENSION;
+        $picPath = $path . $this->resolution[$res] . Constants::PICTURE_EXTENSION;
         $serverPath = $_SERVER['DOCUMENT_ROOT'] . $this->storagePrevPath . '/' . $picPath;
 
         if (!Storage::isImgExist($serverPath)) {
@@ -25,7 +26,7 @@ trait PictureHelper {
 
     public function getUserAvatar($path) {
 
-        $picPath = $path . self::PICTURE_EXTENSION;
+        $picPath = $path . Constants::PICTURE_EXTENSION;
         $serverPath = $_SERVER['DOCUMENT_ROOT'] . $this->storageAvPath . '/' . $picPath;
 
         if (!Storage::isImgExist($serverPath)) {

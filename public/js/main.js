@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initRestorePwdBtn();
   initAuthBtn();
   initFormBackBtn();
+  userRegister();
 });
 
 window.onload = function() {
@@ -778,6 +779,35 @@ const authWindow = document.querySelector('.auth-window');
       e.preventDefault();
       activeWindow.style.display = 'none';
       authWindow.style.display = 'flex';
+    }
+  }
+}
+
+function userRegister() {
+  const btn = document.querySelector('.register--btn');
+  const inputEmail = document.querySelector('#registerEmail');
+  const inputPwd = document.querySelector('#registerPassword');
+  const checkbox = document.querySelector('#agreementCheck');
+
+  let isValid = false;
+
+  $('.register-window__body form').submit(function(event) {
+    return false;
+  });
+
+  if (btn) {
+    btn.onclick = (e) => {
+
+      isValid = inputEmail.validity.valid && 
+      inputPwd.validity.valid &&
+      checkbox.validity.valid;
+
+      if (isValid) {
+        e.preventDefault();
+        btn.blur();
+        console.log('good');
+      }
+      
     }
   }
 }

@@ -11,8 +11,6 @@ class NewsArticle extends BaseArticleModel
     use SoftDeletes;
     use PictureHelper;
 
-    const PICTURE_EXTENSION = '.jpg';
-
     private $resolution = [
         '925' => '_925x520',
         '768' => '_925x231',

@@ -7,24 +7,26 @@
             <form>
                 <div class="form-group">
                     <input
-                            type="email"
-                            class="form-control form-control-lg"
-                            id="exampleInputEmail1"
-                            placeholder="Почта"
-                            required="required"
+                        type="email"
+                        name="email"
+                        class="form-control form-control-lg"
+                        id="exampleInputEmail1"
+                        placeholder="Почта"
+                        required="required"
                     />
                 </div>
                 <div class="form-group">
                     <input
-                            type="password"
-                            class="form-control form-control-lg"
-                            id="exampleInputPassword1"
-                            placeholder="Пароль"
-                            required="required"
+                        type="password"
+                        name="password"
+                        class="form-control form-control-lg"
+                        id="exampleInputPassword1"
+                        placeholder="Пароль"
+                        required="required"
                     />
                 </div>
                 <div class="enter-btn-block">
-                    <button type="submit" class="form-btn">Войти</button>
+                    <button type="submit" class="form-btn auth--btn">Войти</button>
                 </div>
             </form>
             <div class="restore-password">
@@ -62,18 +64,32 @@
         <div class="register-window__body">
             <form>
                 <div class="form-group">
-                    <input type="email" class="is-valid form-control form-control-lg" id="exampleInputEmail1"
-                           aria-describedby="emailHelp" placeholder="Почта" required="required">
+                    <input 
+                        type="email"
+                        name="email" 
+                        class="is-valid form-control form-control-lg" 
+                        id="registerEmail"
+                        aria-describedby="emailHelp" 
+                        placeholder="Почта" 
+                        required="required"
+                        value="{{ old('email') }}" 
+                    >
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-lg is-invalid" id="exampleInputPassword1"
-                           placeholder="Пароль" required="required">
+                    <input 
+                        type="password"
+                        name="password" 
+                        class="form-control form-control-lg is-invalid" 
+                        id="registerPassword"
+                        placeholder="Пароль" 
+                        required="required" 
+                    >
                     <div class="invalid-feedback">
                         Please choose a username.
                     </div>
                 </div>
                 <div class="enter-btn-block">
-                    <button type="submit" class="form-btn">Зарегистрироваться</button>
+                    <button type="submit" class="form-btn register--btn">Зарегистрироваться</button>
                 </div>
                 <div class="custom-control custom-checkbox agreement">
                     <input type="checkbox" class="custom-control-input" id="agreementCheck" required="required">
@@ -115,8 +131,15 @@
         <div class="restore-window__body">
             <form>
                 <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                           aria-describedby="emailHelp" placeholder="Почта" required="required">
+                    <input 
+                        type="email"
+                        name="email" 
+                        class="form-control form-control-lg" 
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp" 
+                        placeholder="Почта" 
+                        required="required"
+                    >
                 </div>
                 <div class="restore-btn-block">
                     <button type="submit" class="form-btn">Восстановить</button>

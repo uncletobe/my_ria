@@ -10,8 +10,6 @@ class AuthorArticle extends BaseArticleModel
 {
     use PictureHelper;
 
-    const PICTURE_EXTENSION = '.jpg';
-
     private $resolution = [
         '480' => '_480x270',
         'min' => '_480x360',

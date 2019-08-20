@@ -26,7 +26,8 @@
                 <div class="comment__author-block">
                     <a href="/user/id/{{ $comment->user->id }}">
                         <span class="comment__author__image">
-                            <img src="/img/default.jpg" alt="" />
+                            <img src="{{ $comments[0]
+                                ->getUserAvatar($comments[0]->user->avatar) }}" />
                         </span>
                         <span class="comment-author__name">
                             {{ $comment->user->name }}
@@ -62,7 +63,8 @@
                 <div class="comment__author-block">
                     <a href="/user/id/{{ $comments[0]->user->id }}">
                         <span class="comment__author__image">
-                            <img src="/img/default.jpg" alt="" />
+                            <img src="{{ $comments[0]
+                                ->getUserAvatar($comments[0]->user->avatar) }}" />
                         </span>
                         <span class="comment-author__name">
                             {{ $comments[0]->user->name }}
