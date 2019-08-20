@@ -24,3 +24,5 @@ Route::get('author-article/{articleSlug}', 'News\AuthorArticleController@index')
     ->name('authorArticle');
 
 Route::get('user/id/{id}', 'User\UserController@show')->name('showuser');
+
+Route::post('user/register', 'Auth\RegisterController');

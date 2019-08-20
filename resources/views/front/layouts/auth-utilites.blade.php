@@ -63,36 +63,40 @@
         </div>
         <div class="register-window__body">
             <form>
-                <div class="form-group">
+                {{ csrf_field() }}
+                <div class="form-group email-group">
                     <input 
                         type="email"
                         name="email" 
-                        class="is-valid form-control form-control-lg" 
+                        class="form-control form-control-lg" 
                         id="registerEmail"
                         aria-describedby="emailHelp" 
                         placeholder="Почта" 
                         required="required"
-                        value="{{ old('email') }}" 
                     >
                 </div>
-                <div class="form-group">
+                <div class="form-group password-group">
                     <input 
                         type="password"
                         name="password" 
-                        class="form-control form-control-lg is-invalid" 
+                        class="form-control form-control-lg" 
                         id="registerPassword"
                         placeholder="Пароль" 
-                        required="required" 
+                        required="required"
+                        minlength="3" 
                     >
-                    <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
                 </div>
                 <div class="enter-btn-block">
                     <button type="submit" class="form-btn register--btn">Зарегистрироваться</button>
                 </div>
                 <div class="custom-control custom-checkbox agreement">
-                    <input type="checkbox" class="custom-control-input" id="agreementCheck" required="required">
+                    <input 
+                        type="checkbox" 
+                        class="custom-control-input" 
+                        id="agreementCheck" 
+                        required="required"
+                        value="1" 
+                    >
                     <label class="custom-control-label" for="agreementCheck">
                         Я принимаю условия
                         <a href="">соглашения</a>

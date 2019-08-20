@@ -761,6 +761,7 @@ function initAuthBtn() {
   const authBtn = document.querySelector('.auth-btn');
   const regWindow = document.querySelector('.register-window');
 
+  clearInputErrors();
   backToAuthWindow(authBtn, regWindow);
 }
 
@@ -768,6 +769,7 @@ function initFormBackBtn() {
   const backBtn = document.querySelector('.form-btn-back');
   const resWindow = document.querySelector('.restore-window');
 
+  clearInputErrors();
   backToAuthWindow(backBtn, resWindow);
 }
 
@@ -777,6 +779,7 @@ const authWindow = document.querySelector('.auth-window');
   if (btn) {
     btn.onclick = (e) => {
       e.preventDefault();
+      clearInputErrors();
       activeWindow.style.display = 'none';
       authWindow.style.display = 'flex';
     }
@@ -788,7 +791,7 @@ function userRegister() {
   const inputEmail = document.querySelector('#registerEmail');
   const inputPwd = document.querySelector('#registerPassword');
   const checkbox = document.querySelector('#agreementCheck');
-
+  const action = 'http://ria.local/user/register';
   let isValid = false;
 
   $('.register-window__body form').submit(function(event) {
@@ -804,10 +807,78 @@ function userRegister() {
 
       if (isValid) {
         e.preventDefault();
+        clearInputErrors();
         btn.blur();
-        console.log('good');
+
+        let data = {
+          email: inputEmail.value, 
+          password:inputPwd.value, 
+          chekbox: checkbox.value
+        }
+
+        sendDataToServer(action, data);
       }
       
     }
   }
+}
+
+function sendDataToServer(action, data) {
+
+  // fetch(action, {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  //   },
+  //   method: 'POST',
+  //   cache: 'no-cache',
+  //   credentials: 'same-origin',
+  //   body: JSON.stringify(data),
+  // })
+  // .then(res => console.log(res));
+
+  $.ajax({
+    url: action,
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    type: 'POST',
+    dataType: 'json',
+    data: data,
+  })
+  .done(function(result) {
+    window.location.reload();
+    console.log('succes', result);
+  })
+  .fail(function(result) {
+
+      if (!result.hasOwnProperty('responseJSON')) return false;
+      handleAuthErrors(result.responseJSON.errors);
+  }) 
+
+}
+
+function handleAuthErrors(errors) {
+  const emailLabel = $('.email-group');
+  const pwdLabel = $('.password-group');
+  let invalid = '<div class="invalid-feedback">';
+
+  if (errors['email']) {
+    emailLabel.append(invalid + errors['email'][0] + '</div>');
+    $('input[name=email]').addClass('is-invalid');
+  } else {
+    $('input[name=email]').addClass('is-valid');
+  }
+
+  if (errors['password']) {
+    pwdLabel.append(invalid + errors['password'][0] + '</div>');
+    $('input[name=password]').addClass('is-invalid');
+  } else {
+    $('input[name=password]').addClass('is-valid');
+  }
+
+}
+
+function clearInputErrors() {
+  $('input[type=email]').removeClass('is-valid is-invalid');
+  $('input[type=password]').removeClass('is-valid is-invalid');
+  $('.invalid-feedback').remove();
 }

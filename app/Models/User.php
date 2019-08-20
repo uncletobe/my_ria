@@ -6,14 +6,11 @@ use App\components\PictureHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\components\Storage;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use PictureHelper;
-
-    const PICTURE_EXTENSION = '.jpg';
 
     /**
      * The attributes that are mass assignable.
@@ -50,9 +47,6 @@ class User extends Authenticatable
 //        return $this->hasMany('App\Models\News\AuthorArticle', 'author_id', 'id');
 //    }
 
-    public function create() {
-
-    }
 
     public function getUserName() {
         if (empty($this->name)) {

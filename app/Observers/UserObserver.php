@@ -4,12 +4,20 @@ namespace App\Observers;
 
 use App\Models\User;
 use App\components\Constants;
+use Illuminate\Support\Facades\Hash;
 
 class UserObserver
 {
+    private $is_banned_default = 0;
+
+    /**
+     * @param User $user
+     */
     public function creating(User $user) {
 
         $user->name = $user->email;
+        $user->is_banned = $this->is_banned_default;
+        $user->password = Hash::make($user->password);
 //        $user->setAvatar($user);
         $user->role_id = Constants::DEFAULT_USER_ROLE;
     }

@@ -13,7 +13,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -28,9 +28,15 @@ class RegisterController extends Controller
     public function __invoke(RegisterRequest $request) {
 
         $data = $request->input();
-        $user = (new User())->create($data);
 
+        if (!empty($data->errors)) {
 
+            return response()->json($data->errors);
+        }
+
+        (new User())->create($data);
+
+        return \Response::json('success');
     }
 
 }
