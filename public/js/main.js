@@ -34,6 +34,9 @@ var isOpenedModal = false;
 const headerHeight = 60;
 const socialBlockMargin = 20;
 const modal = document.querySelector(".modal-share-full");
+var notifications = {
+  confirm :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением отправлено на ваш email.',
+};
 
 function initCarousel() {
   if($("#news-carousel").length) {
@@ -313,6 +316,7 @@ function initAuthIcon() {
 
   authIcons.forEach(function(element) {
     element.onclick = function(e) {
+      clearInputErrors();
       e.preventDefault();
       openModalWindow();
       authWindow.style.display = "flex";
@@ -813,7 +817,7 @@ function userRegister() {
         let data = {
           email: inputEmail.value, 
           password:inputPwd.value, 
-          chekbox: checkbox.value
+          agreementCheck: checkbox.checked
         }
 
         sendDataToServer(action, data);
@@ -845,11 +849,13 @@ function sendDataToServer(action, data) {
     data: data,
   })
   .done(function(result) {
-    window.location.reload();
-    console.log('succes', result);
+    addNotification('warning', 'confirm');
+    clearAuthInputs();
+    clearInputErrors();
+    closeModalWindow();
+    $('.register-window').hide();
   })
   .fail(function(result) {
-
       if (!result.hasOwnProperty('responseJSON')) return false;
       handleAuthErrors(result.responseJSON.errors);
   }) 
@@ -859,6 +865,7 @@ function sendDataToServer(action, data) {
 function handleAuthErrors(errors) {
   const emailLabel = $('.email-group');
   const pwdLabel = $('.password-group');
+  const checkbox = $('.agreement');
   let invalid = '<div class="invalid-feedback">';
 
   if (errors['email']) {
@@ -875,10 +882,35 @@ function handleAuthErrors(errors) {
     $('input[name=password]').addClass('is-valid');
   }
 
+  if (errors['agreementCheck']) {
+    checkbox.append(invalid + errors['agreementCheck'][0] + '</div>');
+    $('input[type=checkbox]').addClass('is-invalid');
+  } else {
+    $('input[type=checkbox]').addClass('is-valid');
+  }
+
 }
 
 function clearInputErrors() {
   $('input[type=email]').removeClass('is-valid is-invalid');
   $('input[type=password]').removeClass('is-valid is-invalid');
+  $('input[type=checkbox]').removeClass('is-valid is-invalid');
   $('.invalid-feedback').remove();
+}
+
+function addNotification(type, msg) {
+    let tmplt = '<div class="alert alert-' + type +' alert-dismissible fade show my-alert" role="alert">' +
+                        notifications[msg] +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                    '</button>' +
+                '</div>';
+
+    $('.super-container').append(tmplt);
+}
+
+function clearAuthInputs() {
+  $('input[type=email]').val('');
+  $('input[type=password]').val('');
+  $('input[type=checkbox]').checked = false;
 }

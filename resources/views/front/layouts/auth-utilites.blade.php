@@ -83,7 +83,7 @@
                         id="registerPassword"
                         placeholder="Пароль" 
                         required="required"
-                        minlength="3" 
+                        minlength="5"
                     >
                 </div>
                 <div class="enter-btn-block">
@@ -94,6 +94,7 @@
                         type="checkbox" 
                         class="custom-control-input" 
                         id="agreementCheck" 
+                        name="agreementCheck"
                         required="required"
                         value="1" 
                     >

@@ -34,7 +34,7 @@ class RegisterController extends Controller
             return response()->json($data->errors);
         }
 
-        (new User())->create($data);
+        $user = (new User())->create($data);
 
         return \Response::json('success');
     }
