@@ -35,7 +35,7 @@ const headerHeight = 60;
 const socialBlockMargin = 20;
 const modal = document.querySelector(".modal-share-full");
 var notifications = {
-  confirm :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением отправлено на ваш email.',
+  confirm :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением выслано на ваш email.',
 };
 
 function initCarousel() {
@@ -912,5 +912,5 @@ function addNotification(type, msg) {
 function clearAuthInputs() {
   $('input[type=email]').val('');
   $('input[type=password]').val('');
-  $('input[type=checkbox]').checked = false;
+  $('input[type=checkbox]').prop('checked', false);
 }

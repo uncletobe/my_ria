@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\User;
 use App\components\Constants;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\ConfirmEmail;
 
 class UserObserver
 {
@@ -30,7 +31,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        //
+        $user->notify(new ConfirmEmail());
     }
 
     /**

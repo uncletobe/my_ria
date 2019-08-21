@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Notifications\ConfirmEmail;
 
 class RegisterController extends Controller
 {
@@ -36,7 +37,11 @@ class RegisterController extends Controller
 
         $user = (new User())->create($data);
 
-        return \Response::json('success');
+        if ($user) {
+
+            return \Response::json('success');
+        }
+
     }
 
 }

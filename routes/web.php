@@ -26,3 +26,8 @@ Route::get('author-article/{articleSlug}', 'News\AuthorArticleController@index')
 Route::get('user/id/{id}', 'User\UserController@show')->name('showuser');
 
 Route::post('user/register', 'Auth\RegisterController');
+
+Route::get('/test-mail', function (){
+    Notification::route('mail', 'KashaGerkyles3@yandex.ru')->notify(new \App\Notifications\ConfirmEmail());
+    return 'Sent';
+});

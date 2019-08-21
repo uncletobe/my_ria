@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ConfirmEmail extends Notification
+class ConfirmEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,9 +41,12 @@ class ConfirmEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Завершение регистрации на ria.local')
+                    ->greeting('Здравствуйте!')
+                    ->line('Для завершения регистрации на сайте ria.local вам необходимо подтвердить свой email.
+                    Для этого просто нажмите по кнопке ниже.')
+                    ->action('Подтвердить email', url('/'))
+                    ->line('Это письмо сформировано автоматически, пожалуйста, не отчвечайте на него.');
     }
 
     /**
