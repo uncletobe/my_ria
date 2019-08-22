@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\components\Constants;
 use App\components\PictureHelper;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,5 +58,18 @@ class User extends Authenticatable
         return $this->name;
     }
 
+
+    public function confirmEmail() {
+        if(!empty($this->email_verified_at)) {
+            return false;
+        }
+
+        $this->email_verified_at = Carbon::now();
+        $this->updated_at = Carbon::now();
+        $this->role_id = Constants::DEFAULT_USER_ROLE;
+        $result = $this->update();
+
+        return $result;
+    }
 
 }

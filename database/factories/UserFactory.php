@@ -33,10 +33,11 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => $faker->password(6), // password
-        'avatar' => $faker->imageUrl($width = 100, $height = 200, 'cats'),
+        'avatar' => $faker->imageUrl($width = 200, $height = 200, 'cats'),
         'role_id' => $roleId,
-        'is_banned' => ($rand < 8) ? 1 : 0,
-        'remember_token' => Str::random(10)
+        'is_banned' => ($rand < 8) ? 0 : 1,
+        'remember_token' => Str::random(10),
+        'confirm_token' => Str::random(15),
     ];
 
     return $data;

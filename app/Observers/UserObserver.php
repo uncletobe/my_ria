@@ -9,18 +9,18 @@ use App\Notifications\ConfirmEmail;
 
 class UserObserver
 {
-    private $is_banned_default = 0;
-
     /**
      * @param User $user
      */
     public function creating(User $user) {
 
         $user->name = $user->email;
-        $user->is_banned = $this->is_banned_default;
+        $user->is_banned = Constants::IS_BANNED_DEFAULT;
         $user->password = Hash::make($user->password);
+        $user->confirm_token = \Str::random(25);
+        $user->setRememberToken(\Str::random(10));
 //        $user->setAvatar($user);
-        $user->role_id = Constants::DEFAULT_USER_ROLE;
+        $user->role_id = Constants::UNCONFIRMED_USER;
     }
 
     /**
@@ -31,7 +31,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $user->notify(new ConfirmEmail());
+
     }
 
     /**

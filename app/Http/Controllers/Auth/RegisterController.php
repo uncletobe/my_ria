@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserCreated;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,8 @@ class RegisterController extends Controller
         $user = (new User())->create($data);
 
         if ($user) {
+
+            event(new UserCreated($user));
 
             return \Response::json('success');
         }

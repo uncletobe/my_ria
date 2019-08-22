@@ -35,8 +35,9 @@ const headerHeight = 60;
 const socialBlockMargin = 20;
 const modal = document.querySelector(".modal-share-full");
 var notifications = {
-  confirm :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением выслано на ваш email.',
+  confirm :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением выслано на ',
 };
+var userEmail;
 
 function initCarousel() {
   if($("#news-carousel").length) {
@@ -821,6 +822,7 @@ function userRegister() {
         }
 
         sendDataToServer(action, data);
+        userEmail = inputEmail.value;
       }
       
     }
@@ -900,7 +902,7 @@ function clearInputErrors() {
 
 function addNotification(type, msg) {
     let tmplt = '<div class="alert alert-' + type +' alert-dismissible fade show my-alert" role="alert">' +
-                        notifications[msg] +
+                        notifications[msg] + userEmail +
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                     '</button>' +

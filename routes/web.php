@@ -11,9 +11,6 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
 Route::get('/', 'News\HomeController@index')->name('home');
 
@@ -27,7 +24,13 @@ Route::get('user/id/{id}', 'User\UserController@show')->name('showuser');
 
 Route::post('user/register', 'Auth\RegisterController');
 
-Route::get('/test-mail', function (){
-    Notification::route('mail', 'KashaGerkyles3@yandex.ru')->notify(new \App\Notifications\ConfirmEmail());
-    return 'Sent';
+//Route::get('/test-mail', function (){
+//    Notification::route('mail', 'KashaGerkyles@yandex.ru')->notify(new \App\Notifications\ConfirmEmail());
+//    return 'Sent';
+//});
+
+Route::match(['get'], 'user/register', function(){
+    return abort(404);
 });
+
+Route::get('confirm/token/{token}', 'Auth\ConfirmController')->name('confirm');

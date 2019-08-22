@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->bigInteger('role_id')->unsigned();
-            $table->boolean('is_banned');
+            $table->smallInteger('is_banned');
+            $table->string('confirm_token');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -41,6 +41,8 @@
 
     @include('front.layouts.auth-utilites')
 
+    @include('front.layouts.notifications')
+
 </div>
 
 <script src="/js/jquery-3.3.1.min.js"></script>

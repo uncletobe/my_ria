@@ -16,6 +16,7 @@ class Roles extends Seeder
             'moderator',
             'author',
             'user',
+            'unconfirmed',
         ];
 
         for($i = 0; $i < count($roles); $i++) {

@@ -11,14 +11,16 @@ class ConfirmEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    protected $token;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -40,12 +42,14 @@ class ConfirmEmail extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+        $confUrl = '/confirm/' . 'token/' . $this->token;
+
         return (new MailMessage)
                     ->subject('Завершение регистрации на ria.local')
                     ->greeting('Здравствуйте!')
                     ->line('Для завершения регистрации на сайте ria.local вам необходимо подтвердить свой email.
                     Для этого просто нажмите по кнопке ниже.')
-                    ->action('Подтвердить email', url('/'))
+                    ->action('Подтвердить email', url($confUrl))
                     ->line('Это письмо сформировано автоматически, пожалуйста, не отчвечайте на него.');
     }
 
