@@ -24,6 +24,8 @@ Route::get('user/id/{id}', 'User\UserController@show')->name('showuser');
 
 Route::post('user/register', 'Auth\RegisterController');
 
+Route::get('user/logout', 'User\UserController@logout')->name('logout');
+
 //Route::get('/test-mail', function (){
 //    Notification::route('mail', 'KashaGerkyles@yandex.ru')->notify(new \App\Notifications\ConfirmEmail());
 //    return 'Sent';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -26,14 +27,20 @@ class UserController extends Controller
     {
         $user = $this->userRepository->getUserById($id);
 
-        if (!isset($user)) {
-            abort(404);
+        if (empty($user[0])) {
+            return abort(404);
         }
 
         $user = $user[0];
 
         return view('front.user.user-page',
             compact('user'));
+    }
+
+    public function logout() {
+        Auth::logout();
+
+        return redirect('/');
     }
 
 
