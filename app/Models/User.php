@@ -72,4 +72,8 @@ class User extends Authenticatable
         return $result;
     }
 
+    public function getDefaultAvatar() {
+        return mb_strtoupper(substr($this->email, 0, 1));
+    }
+
 }

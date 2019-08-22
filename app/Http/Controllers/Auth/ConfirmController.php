@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ConfirmController extends Controller
 {
@@ -28,6 +29,7 @@ class ConfirmController extends Controller
         if(!$result) {
             return abort('404');
         } else {
+            Auth::login($user);
             return redirect('/')->with('succReg', 'success');
         }
     }

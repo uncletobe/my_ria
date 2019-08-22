@@ -16,10 +16,17 @@
                 <div class="avatar-bg"
                      style="background-image: url({{ $user->avatar }});">
                 </div>
-                <div class="user-avatar">
-                    <img src="{{$user->avatar }}">
+
+                @if(!empty($user->avatar))
+                   <div class="user-avatar">
+                       <img src="{{$user->avatar }}">
+                @else
+                   <div class="user-avatar" style="background: lavender">
+                       {{ $user->getDefaultAvatar() }}
+                @endif
+
+                    </div>
                 </div>
-            </div>
                 <div class="user-name">
                     {{ $user->getUserName() }}
                 </div>

@@ -315,14 +315,16 @@ function initAuthIcon() {
   const authIcons = document.querySelectorAll(".header__menu-login");
   const authWindow = document.querySelector(".auth-window");
 
-  authIcons.forEach(function(element) {
-    element.onclick = function(e) {
-      clearInputErrors();
-      e.preventDefault();
-      openModalWindow();
-      authWindow.style.display = "flex";
-    };
-  });
+  if(authIcons) {
+    authIcons.forEach(function(element) {
+      element.onclick = function(e) {
+        clearInputErrors();
+        e.preventDefault();
+        openModalWindow();
+        authWindow.style.display = "flex";
+      };
+    });
+  }
 }
 
 function initCloseAuthorWindow() {
@@ -797,6 +799,9 @@ function userRegister() {
   const inputPwd = document.querySelector('#registerPassword');
   const checkbox = document.querySelector('#agreementCheck');
   const action = 'http://ria.local/user/register';
+  const block = document.querySelector('.register-window--block');
+  const blockBody = document.querySelector('.register-window__body');
+
   let isValid = false;
 
   $('.register-window__body form').submit(function(event) {
@@ -821,7 +826,7 @@ function userRegister() {
           agreementCheck: checkbox.checked
         }
 
-        sendDataToServer(action, data);
+        sendDataToServer(action, data, block, blockBody);
         userEmail = inputEmail.value;
       }
       
@@ -829,7 +834,7 @@ function userRegister() {
   }
 }
 
-function sendDataToServer(action, data) {
+function sendDataToServer(action, data, block, blockBody) {
 
   // fetch(action, {
   //   headers: {
@@ -843,6 +848,8 @@ function sendDataToServer(action, data) {
   // })
   // .then(res => console.log(res));
 
+  showPreloader(block, blockBody);
+
   $.ajax({
     url: action,
     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -855,10 +862,12 @@ function sendDataToServer(action, data) {
     clearAuthInputs();
     clearInputErrors();
     closeModalWindow();
+    hidePreloader(block, blockBody);
     $('.register-window').hide();
   })
   .fail(function(result) {
       if (!result.hasOwnProperty('responseJSON')) return false;
+      hidePreloader(block, blockBody);
       handleAuthErrors(result.responseJSON.errors);
   }) 
 
@@ -915,4 +924,18 @@ function clearAuthInputs() {
   $('input[type=email]').val('');
   $('input[type=password]').val('');
   $('input[type=checkbox]').prop('checked', false);
+}
+
+function showPreloader(block, blockBody) {
+  const loader = block.querySelector('.profile-main-loader');
+
+  loader.style.display = 'block';
+  blockBody.style.display = 'none';
+}
+
+function hidePreloader(block, blockBody) {
+  const loader = block.querySelector('.profile-main-loader');
+
+  loader.style.display = 'none';
+  blockBody.style.display = 'block';
 }
