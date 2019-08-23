@@ -5,26 +5,31 @@
 <div class="main-content container under-head">
     <div class="row justify-content-center d-flex">
         <div class="col-xl-12 col-md-12 page profile">
+
             <div class="profile-head">
-                <div class="logout">
-                    <a href="/user/logout">
-                        Выйти
-                    </a>
-                </div>
+
+                @if($user->id == \Illuminate\Support\Facades\Auth::id())
+                    <div class="logout">
+                        <a href="/user/logout">
+                            Выйти
+                        </a>
+                    </div>
+                @endif
+
                 <div
                     class="avatar-bg"
                     style="background-image: url({{ $user->avatar }});"
                 ></div>
 
                 @if(!empty($user->avatar))
-                <div class="user-avatar">
-                    <img src="{{$user->avatar }}" />
-                    @else
+                    <div class="user-avatar">
+                        <img src="{{$user->avatar }}" />
+                @else
                     <div class="user-avatar" style="background: lavender">
                         {{ $user->getDefaultAvatar() }}
-                        @endif
+                @endif
                     </div>
-                </div>
+            </div>
                 <div class="user-name">
                     {{ $user->getUserName() }}
                 </div>

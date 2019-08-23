@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAuthBtn();
   initFormBackBtn();
   userRegister();
+  userAuth();
 });
 
 window.onload = function() {
@@ -938,4 +939,41 @@ function hidePreloader(block, blockBody) {
 
   loader.style.display = 'none';
   blockBody.style.display = 'block';
+}
+
+function userAuth() {
+  const btn = document.querySelector('.auth--btn');
+  const inputEmail = document.querySelector('#authEmail');
+  const inputPwd = document.querySelector('#authPassword');
+  const action = 'http://ria.local/user/auth';
+  const block = document.querySelector('.auth-window--block');
+  const blockBody = document.querySelector('.auth-window__body');
+
+  let isValid = false;
+
+  $('.auth-window__body form').submit(function(event) {
+    return false;
+  });
+
+  if (btn) {
+    btn.onclick = (e) => {
+
+      isValid = inputEmail.validity.valid && 
+      inputPwd.validity.valid;
+
+      if (isValid) {
+        e.preventDefault();
+        clearInputErrors();
+        btn.blur();
+
+        let data = {
+          email: inputEmail.value, 
+          password:inputPwd.value, 
+        }
+
+        sendDataToServer(action, data, block, blockBody);
+      }
+      
+    }
+  }
 }

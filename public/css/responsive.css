@@ -415,10 +415,6 @@
 		margin-top: auto;
 	}
 
-	.auth-social a+a {
-		margin-left: 10px;
-	}
-
 	.auth-window__body, 
 	.register-window__body, 
 	.restore-window__body 
@@ -461,6 +457,10 @@
 	.quote__text {
 		font-size: 16px;
     	line-height: 25px;
+	}
+
+	.auth-social a+a {
+		margin-left: 20px;
 	}
 
 }

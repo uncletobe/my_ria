@@ -975,6 +975,8 @@ a:hover {
 }
 
 .auth-social {
+	display: flex;
+	justify-content: center;
 	margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
@@ -982,12 +984,15 @@ a:hover {
 }
 
 .auth-social a {
-	display: inline-block;
+	/*display: inline-block;*/
+	display: flex;
 	width: 60px;
 	height: 60px;
 	border-radius: 30px;
 	padding: 15px;
 	user-select: none;
+	align-items: center;
+    justify-content: center;
 }
 
 .auth-social a i {
@@ -996,7 +1001,7 @@ a:hover {
 }
 
 .auth-social a+a {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 .auth-facebook {

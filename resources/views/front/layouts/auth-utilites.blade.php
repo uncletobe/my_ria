@@ -5,12 +5,13 @@
         </div>
         <div class="auth-window__body">
             <form>
+                {{ csrf_field() }}
                 <div class="form-group">
                     <input
                         type="email"
                         name="email"
                         class="form-control form-control-lg"
-                        id="exampleInputEmail1"
+                        id="authEmail"
                         placeholder="Почта"
                         required="required"
                     />
@@ -20,7 +21,7 @@
                         type="password"
                         name="password"
                         class="form-control form-control-lg"
-                        id="exampleInputPassword1"
+                        id="authPassword"
                         placeholder="Пароль"
                         required="required"
                     />
