@@ -22,9 +22,11 @@ Route::get('author-article/{articleSlug}', 'News\AuthorArticleController@index')
 
 Route::get('user/id/{id}', 'User\UserController@show')->name('showuser');
 
-Route::post('user/register', 'Auth\RegisterController');
+Route::post('user/login', 'Auth\LoginController')->name('login');
 
-Route::get('user/logout', 'User\UserController@logout')->name('logout');
+Route::post('user/register', 'Auth\RegisterController')->name('register');
+
+Route::get('user/logout', 'Auth\LogoutController')->name('logout');
 
 //Route::get('/test-mail', function (){
 //    Notification::route('mail', 'KashaGerkyles@yandex.ru')->notify(new \App\Notifications\ConfirmEmail());

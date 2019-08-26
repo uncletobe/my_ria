@@ -859,17 +859,10 @@ function sendDataToServer(action, data, block, blockBody) {
     data: data,
   })
   .done(function(result) {
-    addNotification('warning', 'confirm');
-    clearAuthInputs();
-    clearInputErrors();
-    closeModalWindow();
-    hidePreloader(block, blockBody);
-    $('.register-window').hide();
+    handleSuccDataFromServer(result, block, blockBody);
   })
   .fail(function(result) {
-      if (!result.hasOwnProperty('responseJSON')) return false;
-      hidePreloader(block, blockBody);
-      handleAuthErrors(result.responseJSON.errors);
+      handleFailDataFromServer(result, block, blockBody);
   }) 
 
 }
@@ -908,6 +901,7 @@ function clearInputErrors() {
   $('input[type=password]').removeClass('is-valid is-invalid');
   $('input[type=checkbox]').removeClass('is-valid is-invalid');
   $('.invalid-feedback').remove();
+  $('.alert-danger').remove();
 }
 
 function addNotification(type, msg) {
@@ -945,7 +939,7 @@ function userAuth() {
   const btn = document.querySelector('.auth--btn');
   const inputEmail = document.querySelector('#authEmail');
   const inputPwd = document.querySelector('#authPassword');
-  const action = 'http://ria.local/user/auth';
+  const action = 'http://ria.local/user/login';
   const block = document.querySelector('.auth-window--block');
   const blockBody = document.querySelector('.auth-window__body');
 
@@ -976,4 +970,43 @@ function userAuth() {
       
     }
   }
+}
+
+function handleSuccDataFromServer(result, block, blockBody) {
+  clearAuthInputs();
+  clearInputErrors();
+  closeModalWindow();
+  hidePreloader(block, blockBody);
+
+  if (result === 'success-register') {
+    $('.register-window').hide();
+    addNotification('warning', 'confirm');
+  } else if (result === 'success-login') {
+    $('.auth-window').hide();
+    window.location.reload();
+  }
+  
+}
+
+function handleFailDataFromServer(result, block, blockBody) {
+  if (!result.hasOwnProperty('responseJSON')) return false;
+
+  if (result.responseJSON === 'fail-login') {
+    badEmailOrPassword(blockBody);
+    hidePreloader(block, blockBody);
+    return false;
+  }
+
+  hidePreloader(block, blockBody);
+  handleAuthErrors(result.responseJSON.errors);
+}
+
+function badEmailOrPassword(blockBody) {
+  const tmplt = '<div class="alert alert-danger" role="alert">'+
+                    'Неправильный логин или пароль!'+
+                '</div>';
+  blockBody.insertAdjacentHTML('afterbegin', tmplt);
+
+  $('input[name=email]').addClass('is-invalid');
+  $('input[name=password]').addClass('is-invalid');
 }

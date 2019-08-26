@@ -135,7 +135,6 @@ class ArticleRepository extends CoreRepository {
                 'newsPicture:id,article_id,news_picture_path',
             ])
             ->get();
-        //->toArray();
 
         return $result;
     }

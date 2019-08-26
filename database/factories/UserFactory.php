@@ -38,6 +38,7 @@ $factory->define(User::class, function (Faker $faker) {
         'is_banned' => ($rand < 8) ? 0 : 1,
         'remember_token' => Str::random(10),
         'confirm_token' => Str::random(15),
+        'is_verified' => ($rand < 9) ? 1 : 0,
     ];
 
     return $data;

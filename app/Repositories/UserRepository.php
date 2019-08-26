@@ -15,7 +15,8 @@ class UserRepository extends CoreRepository {
                 'id',
                 'email',
                 'name',
-                'avatar'
+                'avatar',
+                'email_verified_at'
             ];
 
 

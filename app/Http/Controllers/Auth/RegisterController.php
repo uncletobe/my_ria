@@ -6,7 +6,6 @@ use App\Events\UserCreated;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Notifications\ConfirmEmail;
 
 class RegisterController extends Controller
 {
@@ -42,7 +41,7 @@ class RegisterController extends Controller
 
             event(new UserCreated($user));
 
-            return \Response::json('success');
+            return \Response::json('success-register');
         }
 
     }

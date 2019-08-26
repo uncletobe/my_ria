@@ -43,8 +43,10 @@
                         <span>комментариев</span>
                     </div>
                     <div class="user-stats__item">
-                        <div class="user-stats__item-value">3</div>
-                        <span>года на сайте</span>
+                        <div class="user-stats__item-value">
+                            {{ $user->getRegisterTime() }}
+                        </div>
+                        <span>{{ $user->getHowLongRegister() }} на сайте</span>
                     </div>
                 </div>
             </div>

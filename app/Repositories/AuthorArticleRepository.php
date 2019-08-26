@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\components\Constants;
 use App\Models\News\AuthorArticle as Model;
 
 
@@ -54,6 +55,7 @@ class AuthorArticleRepository extends CoreRepository {
         $result = $this->startConditions()
                 ->select($this->commonColumns)
                 ->orderBy('id', 'DESC')
+                ->where('is_published', Constants::PUBLISHED)
                 ->limit($limit)
                 ->with(['user:id,name,avatar'])
                 ->get();

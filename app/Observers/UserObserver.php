@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Models\User;
 use App\components\Constants;
 use Illuminate\Support\Facades\Hash;
-use App\Notifications\ConfirmEmail;
 
 class UserObserver
 {
@@ -19,6 +18,7 @@ class UserObserver
         $user->password = Hash::make($user->password);
         $user->confirm_token = \Str::random(25);
         $user->setRememberToken(\Str::random(10));
+        $user->is_verified = Constants::USER_NOT_VERIFIED;
 //        $user->setAvatar($user);
         $user->role_id = Constants::UNCONFIRMED_USER;
     }

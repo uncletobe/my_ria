@@ -902,7 +902,7 @@ a:hover {
 
 .auth-window--block,
 .register-window--block {
-	height: 585px;
+	min-height: 585px;
 }
 
 .auth-window__title h2,

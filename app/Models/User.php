@@ -6,13 +6,15 @@ use App\components\Constants;
 use App\components\PictureHelper;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\CarbonInterface;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use PictureHelper;
+
+    public $howLongRegister;
 
     /**
      * The attributes that are mass assignable.
@@ -60,13 +62,14 @@ class User extends Authenticatable
 
 
     public function confirmEmail() {
-        if(!empty($this->email_verified_at)) {
+        if($this->is_verified == 1) {
             return false;
         }
 
         $this->email_verified_at = Carbon::now();
         $this->updated_at = Carbon::now();
         $this->role_id = Constants::DEFAULT_USER_ROLE;
+        $this->is_verified = 1;
         $result = $this->update();
 
         return $result;
@@ -74,6 +77,21 @@ class User extends Authenticatable
 
     public function getDefaultAvatar() {
         return mb_strtoupper(substr($this->email, 0, 1));
+    }
+
+    public function getRegisterTime() {
+
+        $registred = Carbon::parse($this->email_verified_at);
+        $date = $registred->diffForHumans(['syntax' => CarbonInterface::DIFF_ABSOLUTE]);
+
+        $start = strpos($date, ' ');
+        $this->howLongRegister = substr($date, strpos($date, ' ', $start));
+
+        return substr($date, 0, $start);
+    }
+
+    public function getHowLongRegister() {
+        return $this->howLongRegister;
     }
 
 }
