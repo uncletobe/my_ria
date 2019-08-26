@@ -46,4 +46,5 @@
 @section('scripts')
 <script src="/plugins/owlcarousel/js/owl.carousel.min.js"></script>
 <script src="/plugins/fancybox-3.5.7/js/jquery.fancybox.min.js"></script>
+<script src="/js/like.js"></script>
 @endsection

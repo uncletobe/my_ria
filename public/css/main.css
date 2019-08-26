@@ -1732,6 +1732,8 @@ a:hover {
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+    max-height: 70px;
+    overflow: hidden;
 }
 .recommend-carousel .owl-nav {
 	position: absolute;

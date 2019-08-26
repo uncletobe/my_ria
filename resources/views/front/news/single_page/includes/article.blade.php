@@ -24,7 +24,7 @@
             </div>
 
             <div class="assessment-block">
-                <a href="" class="like-icon" data-title="Нравится">
+                <a class="like-icon" data-title="Нравится">
                     <span class="like">
                         <svg>
                             <use xlink:href="#like-icon" />
@@ -34,7 +34,7 @@
                         25
                     </span>
                 </a>
-                <a href="" class="funny-icon" data-title="Ха-Ха">
+                <a class="funny-icon" data-title="Ха-Ха">
                     <span class="funny">
                         <svg>
                             <use xlink:href="#funny-icon" />
@@ -44,7 +44,7 @@
                         32
                     </span>
                 </a>
-                <a href="" class="amazing-icon" data-title="Удивительно">
+                <a class="amazing-icon" data-title="Удивительно">
                     <span class="amazing">
                         <svg>
                             <use xlink:href="#amazing-icon" />
@@ -54,7 +54,7 @@
                         7
                     </span>
                 </a>
-                <a href="" class="sad-icon" data-title="Грустно">
+                <a class="sad-icon" data-title="Грустно">
                     <span class="sad">
                         <svg>
                             <use xlink:href="#sad-icon" />
@@ -64,7 +64,7 @@
                         5
                     </span>
                 </a>
-                <a href="" class="angry-icon" data-title="Возмутительно">
+                <a class="angry-icon" data-title="Возмутительно">
                     <span class="angry">
                         <svg>
                             <use xlink:href="#angry-icon" />
@@ -74,7 +74,7 @@
                         3
                     </span>
                 </a>
-                <a href="" class="unlike-icon" data-title="Не нравится">
+                <a class="unlike-icon" data-title="Не нравится">
                     <span class="unlike">
                         <svg>
                             <use xlink:href="#unlike-icon" />
