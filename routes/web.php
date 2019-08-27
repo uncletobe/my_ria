@@ -26,6 +26,8 @@ Route::post('user/login', 'Auth\LoginController')->name('login');
 
 Route::post('user/register', 'Auth\RegisterController')->name('register');
 
+Route::get('confirm/token/{token}', 'Auth\ConfirmController')->name('confirm');
+
 Route::get('user/logout', 'Auth\LogoutController')->name('logout');
 
 //Route::get('/test-mail', function (){
@@ -37,4 +39,8 @@ Route::match(['get'], 'user/register', function(){
     return abort(404);
 });
 
-Route::get('confirm/token/{token}', 'Auth\ConfirmController')->name('confirm');
+/* --> Redis */
+
+Route::post('news/{articleSlug}/addassessment', 'News\NewsLikeController@addAssessment')
+    ->middleware('auth-user')
+    ->name('addAssessment');

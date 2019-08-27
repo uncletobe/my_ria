@@ -151,6 +151,20 @@ class ArticleRepository extends CoreRepository {
         return $result;
     }
 
+    public function getIdBySlug($articleSlug) {
+
+        $articleSlug = (string)$articleSlug;
+
+        $result = $this
+            ->startConditions()
+            ->select('id')
+            ->where('article_slug', $articleSlug)
+            ->get()
+            ->toArray();
+
+        return $result;
+    }
+
 }
 
 

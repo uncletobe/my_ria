@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.onload = () => {
 
 	const likeBtn = $('.like-icon');
 	const funnyBtn = $('.funny-icon');
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			likeBtn.click((e) => {
 				e.preventDefault();
 				if (!isBtnPressed('like')) {
-					addPlusForBtn(likeBtn);
+					sendDataToServer('like');
 				}
 			});
 		} 
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			funnyBtn.click((e) => {
 				e.preventDefault();
 				if (!isBtnPressed('funny')) {
-					addPlusForBtn(funnyBtn);
+					sendDataToServer('funny');
 				}
 			});
 		} 
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			amazingBtn.click((e) => {
 				e.preventDefault();
 				if (!isBtnPressed('amazing')) {
-					addPlusForBtn(amazingBtn);
+					sendDataToServer('amazing');
 				}
 			});
 		} 		
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			sadBtn.click((e) => {
 				e.preventDefault();
 				if (!isBtnPressed('sad')) {
-					addPlusForBtn(sadBtn);
+					sendDataToServer('sad');
 				}
 			});
 		} 		
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			angryBtn.click((e) => {
 				e.preventDefault();
 				if (!isBtnPressed('angry')) {
-					addPlusForBtn(angryBtn);
+					sendDataToServer('angry');
 				}
 			});
 		} 		
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			unlikeBtn.click((e) => {
 				e.preventDefault();
 				if (!isBtnPressed('unlike')) {
-					addPlusForBtn(unlikeBtn);
+					sendDataToServer('unlike');
 				}
 			});
 		} 			
@@ -97,14 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function isBtnPressed(emotion) {
 		let result = true;
-		let except;
 
 		switch (emotion) {
 			case 'like':
 				if (!emotions['like']) {
 					emotions['like'] = true;
 					result = false;
-					except = 'like';
 				}
 				break;
 
@@ -112,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (!emotions['funny']) {
 					emotions['funny'] = true;
 					result = false;
-					except = 'funny';
 				}
 				break;
 
@@ -120,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (!emotions['amazing']) {
 					emotions['amazing'] = true;
 					result = false;
-					except = 'amazing';
 				}
 				break;
 
@@ -128,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (!emotions['sad']) {
 					emotions['sad'] = true;
 					result = false;
-					except = 'sad';
 				}
 				break;
 
@@ -136,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (!emotions['angry']) {
 					emotions['angry'] = true;
 					result = false;
-					except = 'angry';
 				}
 				break;
 
@@ -144,70 +138,62 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (!emotions['unlike']) {
 					emotions['unlike'] = true;
 					result = false;
-					except = 'unlike';
 				}
 				break;
 		}
 
-		searchMinusEmote(except);
 		return result;
 	}
 
-	function searchMinusEmote(except) {
-		for (let key in emotions) {
-			if (emotions[key] == true && key != except) {
-				minusBtnFactory(key);
-				return true;
-			}
-		}
-	}
+	function showEmotionCount(emotion, value) {
 
-	function minusBtnFactory(key) {
-		switch (key) {
-			case 'like':
-				addMinusForBtn(likeBtn);
-				emotions['like'] = false;
-				break;
-			case 'funny':
-				addMinusForBtn(funnyBtn);
-				emotions['funny'] = false;
-				break;
-			case 'amazing':
-				addMinusForBtn(amazingBtn);
-				emotions['amazing'] = false;
-				break;
-			case 'sad':
-				addMinusForBtn(sadBtn);
-				emotions['sad'] = false;
-				break;
-			case 'angry':
-				addMinusForBtn(angryBtn);
-				emotions['angry'] = false;
-				break;
-			case 'unlike':
-				addMinusForBtn(unlikeBtn);
-				emotions['unlike'] = false;
-				break;
-			
-		}
-	}
+		let arr = {
+			'like': likeBtn,
+			'funny': funnyBtn,
+			'amazing': amazingBtn,
+			'sad': sadBtn,
+			'angry': angryBtn,
+			'unlike': unlikeBtn,
+		};
 
-	function addPlusForBtn(btn) {
-		let count = btn.children('.count').html();
-		btn.children('.count').html(parseInt(count) + 1);
+		arr[emotion].children('.count').html(value);
 	}	
 
-	function addMinusForBtn(btn) {
-		let count = btn.children('.count').html();
-		btn.children('.count').html(parseInt(count) - 1);
+	function sendDataToServer(plusEmotion) {
+
+		let slug = getSlug();
+		let url = '/news/' + slug + '/addassessment';
+
+		let data = {
+			slug: slug,
+			plusEmotion: plusEmotion,
+		}
+
+		fetch(url, {
+		    headers: {
+		      'Content-Type': 'application/json',
+		    },
+		    method: 'POST',
+		    cache: 'no-cache',
+		    credentials: 'same-origin',
+		    body: JSON.stringify(data),
+		  })
+  		.then(res => res.json())
+  		.then(res => {
+
+  				for (let key in res) {
+  					showEmotionCount(key, res[key]);
+  				}
+  				console.log('Успех:', JSON.stringify(res))
+  			});
 	}
 
+  
+	function getSlug() {
+		let url = window.location.pathname;
+		let arr = url.split('/');
 
+		return arr[2];
+	}
 
-
-
-
-
-
-
-})
+}

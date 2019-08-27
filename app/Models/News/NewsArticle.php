@@ -3,6 +3,7 @@
 namespace App\Models\News;
 
 use App\components\PictureHelper;
+use App\Extensions\Redis\LikeModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\components\Storage;
 
@@ -30,5 +31,9 @@ class NewsArticle extends BaseArticleModel
 
     public function articleTag() {
         return $this->hasMany('App\Models\News\ArticleTag', 'article_id');
+    }
+
+    public function getCountEmotion($articleId, $emotion) {
+        return 0;
     }
 }

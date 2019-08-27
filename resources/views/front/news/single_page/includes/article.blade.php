@@ -31,7 +31,7 @@
                         </svg>
                     </span>
                     <span class="count">
-                        25
+                        {{ $article->getCountEmotion($article->id, 'like') }}
                     </span>
                 </a>
                 <a class="funny-icon" data-title="Ха-Ха">
@@ -41,7 +41,7 @@
                         </svg>
                     </span>
                     <span class="count">
-                        32
+                        {{ $article->getCountEmotion($article->id, 'funny') }}
                     </span>
                 </a>
                 <a class="amazing-icon" data-title="Удивительно">
@@ -51,7 +51,7 @@
                         </svg>
                     </span>
                     <span class="count">
-                        7
+                        {{ $article->getCountEmotion($article->id, 'amazing') }}
                     </span>
                 </a>
                 <a class="sad-icon" data-title="Грустно">
@@ -61,7 +61,7 @@
                         </svg>
                     </span>
                     <span class="count">
-                        5
+                        {{ $article->getCountEmotion($article->id, 'sad') }}
                     </span>
                 </a>
                 <a class="angry-icon" data-title="Возмутительно">
@@ -71,7 +71,7 @@
                         </svg>
                     </span>
                     <span class="count">
-                        3
+                        {{ $article->getCountEmotion($article->id, 'angry') }}
                     </span>
                 </a>
                 <a class="unlike-icon" data-title="Не нравится">
@@ -81,7 +81,7 @@
                         </svg>
                     </span>
                     <span class="count">
-                        7
+                        {{ $article->getCountEmotion($article->id, 'unlike') }}
                     </span>
                 </a>
             </div>
