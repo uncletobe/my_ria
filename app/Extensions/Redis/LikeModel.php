@@ -34,8 +34,10 @@ class LikeModel
         $this->addEmotion($plusEmotion);
         $this->searchMinusEmoteFactory($plusEmotion);
 
-        $result[$plusEmotion] = $this->getCountEmotion($plusEmotion);
-        $result[$this->minusEmotionName] = $this->getCountEmotion($this->minusEmotionName);
+        $this->addCountForUserLikes();
+
+        $result[$plusEmotion] = self::getCountEmotion($this->set, $this->articleId, $plusEmotion);
+        $result[$this->minusEmotionName] = self::getCountEmotion($this->set, $this->articleId, $this->minusEmotionName);
 
         return $result;
     }
@@ -48,11 +50,6 @@ class LikeModel
         Redis::srem("{$this->set}:{$this->articleId}:{$minusEmotion}", $this->userId);
     }
 
-
-    private function getCountEmotion($emotion) {
-        return Redis::scard("{$this->set}:{$this->articleId }:{$emotion}");
-    }
-
     private function searchMinusEmoteFactory($plusEmotion) {
         $liked = '';
 
@@ -60,7 +57,7 @@ class LikeModel
             if ($emotion == $plusEmotion) continue;
             $liked = $this->isLikedBy($emotion);
 
-            if ($liked) {
+            if ($liked == 1) {
                 $this->removeEmotion($emotion);
                 $this->minusEmotionName = $emotion;
                 break;
@@ -75,5 +72,19 @@ class LikeModel
         if(!empty($result)) return true;
 
         return false;
+    }
+
+    public static function getCountEmotion($set, $articleId, $emotion) {
+        return Redis::scard("{$set}:{$articleId }:{$emotion}");
+    }
+
+    public static function abc($emotion) {
+        return Redis::smembers('newsArticle:496:'.$emotion);
+    }
+
+    public function addCountForUserLikes() {
+        if (empty($this->minusEmotionName)) {
+            Redis::incr("user-comments-count:{$this->userId}");
+        }
     }
 }

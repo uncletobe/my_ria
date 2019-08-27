@@ -102,5 +102,6 @@
     <orderEntry type="module" module-name="laravel5-3-example-master" />
     <orderEntry type="module" module-name="laravel" />
     <orderEntry type="module" module-name="laravel" />
+    <orderEntry type="module" module-name="steam-star" />
   </component>
 </module>

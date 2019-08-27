@@ -10,14 +10,6 @@ use App\Repositories\ArticleRepository;
 
 class NewsLikeController extends Controller
 {
-    private $userId;
-    private $likeModel;
-
-    public function __construct()
-    {
-        $this->userId = Auth::id();
-    }
-
     public function addAssessment(Request $request) {
 
         $articleRepository = new ArticleRepository();
@@ -27,14 +19,13 @@ class NewsLikeController extends Controller
             return abort(404);
         }
 
+        $userId = Auth::id();
         $articleId = $article[0]['id'];
 
-        $likeModel = new LikeModel('newsArticle', $articleId, $this->userId);
+        $likeModel = new LikeModel('newsArticle', $articleId, $userId);
 
         $result = $likeModel->handleEmotion($request['plusEmotion']);
 
-
-//        return \Response::json('success');
-        return \Response::json($result);
+      return \Response::json($result);
     }
 }

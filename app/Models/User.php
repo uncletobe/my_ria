@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Carbon\CarbonInterface;
+use Illuminate\Support\Facades\Redis;
 
 class User extends Authenticatable
 {
@@ -92,6 +93,14 @@ class User extends Authenticatable
 
     public function getHowLongRegister() {
         return $this->howLongRegister;
+    }
+
+    public function countUserLikes() {
+        $result = Redis::get("user-comments-count:{$this->id}");
+
+        if(empty($result)) $result = 0;
+
+        return $result;
     }
 
 }

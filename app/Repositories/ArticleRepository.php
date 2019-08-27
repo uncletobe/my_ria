@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\News\NewsArticle as Model;
-use App\Models\News\NewsArticle;
 
 
 /**

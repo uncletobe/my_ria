@@ -35,7 +35,9 @@
                 </div>
                 <div class="user-stats">
                     <div class="user-stats__item">
-                        <div class="user-stats__item-value">8</div>
+                        <div class="user-stats__item-value">
+                            {{ $user->countUserLikes() }}
+                        </div>
                         <span>оценок</span>
                     </div>
                     <div class="user-stats__item">

@@ -1,11 +1,11 @@
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-	const likeBtn = $('.like-icon');
-	const funnyBtn = $('.funny-icon');
-	const amazingBtn = $('.amazing-icon');
-	const sadBtn = $('.sad-icon');
-	const angryBtn = $('.angry-icon');
-	const unlikeBtn = $('.unlike-icon');
+	const likeBtn = $('.article .like-icon');
+	const funnyBtn = $('.article .funny-icon');
+	const amazingBtn = $('.article .amazing-icon');
+	const sadBtn = $('.article .sad-icon');
+	const angryBtn = $('.article .angry-icon');
+	const unlikeBtn = $('.article .unlike-icon');
 
 	var emotions = {
 		'like': false,
@@ -156,7 +156,10 @@ window.onload = () => {
 			'unlike': unlikeBtn,
 		};
 
-		arr[emotion].children('.count').html(value);
+		if (arr[emotion]) {
+			arr[emotion].children('.count').html(value);
+			emotions[emotion] = false;
+		}
 	}	
 
 	function sendDataToServer(plusEmotion) {
@@ -180,11 +183,7 @@ window.onload = () => {
 		  })
   		.then(res => res.json())
   		.then(res => {
-
-  				for (let key in res) {
-  					showEmotionCount(key, res[key]);
-  				}
-  				console.log('Успех:', JSON.stringify(res))
+  				handleResponseFromServer(res);
   			});
 	}
 
@@ -196,4 +195,17 @@ window.onload = () => {
 		return arr[2];
 	}
 
-}
+	function handleResponseFromServer(res) {
+
+		if (res == 'not auth') {
+				console.log('не авторизован');
+		} else {
+
+			for (let key in res) {
+				showEmotionCount(key, res[key]);
+			}
+			console.log('Успех:', JSON.stringify(res))
+		}
+	}
+
+})

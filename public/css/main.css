@@ -548,6 +548,7 @@ a:hover {
 .author-block__image img {
 	height: 160px;
 	margin-bottom: 20px;
+	padding: 5px;
 }
 
 .author-block__author-info {
