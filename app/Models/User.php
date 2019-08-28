@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Request;
 
 class User extends Authenticatable
 {
@@ -101,6 +102,10 @@ class User extends Authenticatable
         if(empty($result)) $result = 0;
 
         return $result;
+    }
+
+    public static function getUserIp() {
+        return \Request::ip();
     }
 
 }

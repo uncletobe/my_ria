@@ -40,6 +40,6 @@ class NewsArticle extends BaseArticleModel
     }
 
     public function getViews() {
-        return RedisUtilites::getViews($this->set, $this->id);
+        return RedisUtilites::getViews($this->id);
     }
 }

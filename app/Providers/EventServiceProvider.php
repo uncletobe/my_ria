@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\ArticleView;
 use App\Events\UserCreated;
 use App\Listeners\SendRegisterNotification;
+use App\Listeners\UserViewedArticle;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,11 +16,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-//        Registered::class => [
-//            SendEmailVerificationNotification::class,
-//        ],
         UserCreated::class => [
             SendRegisterNotification::class,
+        ],
+        ArticleView::class => [
+            UserViewedArticle::class,
         ],
     ];
 
