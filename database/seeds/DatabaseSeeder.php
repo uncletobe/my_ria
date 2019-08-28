@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(Roles::class);
         factory(\App\Models\User::class, 100)->create();
+        $this->call(PasswordResetSeeder::class);
 
         $this->call(NewsArticlesSeeder::class);
         $this->call(AuthorArticlesSeeder::class);

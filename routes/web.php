@@ -20,15 +20,18 @@ Route::get('news/{articleSlug}', 'News\ArticleController@index')
 Route::get('author-article/{articleSlug}', 'News\AuthorArticleController@index')
     ->name('authorArticle');
 
-Route::get('user/id/{id}', 'User\UserController@show')->name('showuser');
+Route::get('user/id/{id}', 'User\UserController@show')->name('showUser');
 
 Route::post('user/login', 'Auth\LoginController')->name('login');
 
 Route::post('user/register', 'Auth\RegisterController')->name('register');
 
+Route::post('user/restore-password', 'Auth\RestorePasswordController')->name('restorePassword');
+
 Route::get('confirm/token/{token}', 'Auth\ConfirmController')->name('confirm');
 
 Route::get('user/logout', 'Auth\LogoutController')->name('logout');
+
 
 //Route::get('/test-mail', function (){
 //    Notification::route('mail', 'KashaGerkyles@yandex.ru')->notify(new \App\Notifications\ConfirmEmail());

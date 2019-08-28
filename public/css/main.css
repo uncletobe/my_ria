@@ -873,6 +873,7 @@ a:hover {
 .auth-window,
 .search-window,
 .restore-window,
+.restore-password-window,
 .register-window
 {
 	display: none;
@@ -891,6 +892,7 @@ a:hover {
 
 .auth-window--block,
 .restore-window--block,
+.restore-password-window--block,
 .register-window--block
 {
 	position: relative;
@@ -906,8 +908,13 @@ a:hover {
 	min-height: 585px;
 }
 
+.restore-password-window {
+	height: 450px;
+}
+
 .auth-window__title h2,
 .restore-window__title h2,
+.restore-password-window__title h2,
 .register-window__title h2
 {
 	margin-bottom: 40px;
@@ -1238,7 +1245,7 @@ a:hover {
 
 .page {
 	background-color: #fff;
-	padding-bottom: 60px;
+	padding-bottom: 20px;
 }
 
 .policy {
@@ -1733,7 +1740,7 @@ a:hover {
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
-    max-height: 70px;
+    max-height: 50px;
     overflow: hidden;
 }
 .recommend-carousel .owl-nav {

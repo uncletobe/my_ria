@@ -18,8 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initRestorePwdBtn();
   initAuthBtn();
   initFormBackBtn();
-  userRegister();
-  userAuth();
+  initUserRegister();
+  initUserAuth();
+  initUserRestorePassword();
 });
 
 window.onload = function() {
@@ -794,7 +795,7 @@ const authWindow = document.querySelector('.auth-window');
   }
 }
 
-function userRegister() {
+function initUserRegister() {
   const btn = document.querySelector('.register--btn');
   const inputEmail = document.querySelector('#registerEmail');
   const inputPwd = document.querySelector('#registerPassword');
@@ -873,27 +874,30 @@ function handleAuthErrors(errors) {
   const checkbox = $('.agreement');
   let invalid = '<div class="invalid-feedback">';
 
-  if (errors['email']) {
-    emailLabel.append(invalid + errors['email'][0] + '</div>');
-    $('input[name=email]').addClass('is-invalid');
-  } else {
-    $('input[name=email]').addClass('is-valid');
-  }
+  if(errors !== undefined) {
 
-  if (errors['password']) {
-    pwdLabel.append(invalid + errors['password'][0] + '</div>');
-    $('input[name=password]').addClass('is-invalid');
-  } else {
-    $('input[name=password]').addClass('is-valid');
-  }
+    if (errors['email']) {
+      emailLabel.append(invalid + errors['email'][0] + '</div>');
+      $('input[name=email]').addClass('is-invalid');
+    } else {
+      $('input[name=email]').addClass('is-valid');
+    }
 
-  if (errors['agreementCheck']) {
-    checkbox.append(invalid + errors['agreementCheck'][0] + '</div>');
-    $('input[type=checkbox]').addClass('is-invalid');
-  } else {
-    $('input[type=checkbox]').addClass('is-valid');
-  }
+    if (errors['password']) {
+      pwdLabel.append(invalid + errors['password'][0] + '</div>');
+      $('input[name=password]').addClass('is-invalid');
+    } else {
+      $('input[name=password]').addClass('is-valid');
+    }
 
+    if (errors['agreementCheck']) {
+      checkbox.append(invalid + errors['agreementCheck'][0] + '</div>');
+      $('input[type=checkbox]').addClass('is-invalid');
+    } else {
+      $('input[type=checkbox]').addClass('is-valid');
+    }
+
+  }
 }
 
 function clearInputErrors() {
@@ -924,18 +928,23 @@ function clearAuthInputs() {
 function showPreloader(block, blockBody) {
   const loader = block.querySelector('.profile-main-loader');
 
-  loader.style.display = 'block';
-  blockBody.style.display = 'none';
+  if (loader !== null) {
+      loader.style.display = 'block';
+      blockBody.style.display = 'none';
+  }
+
 }
 
 function hidePreloader(block, blockBody) {
   const loader = block.querySelector('.profile-main-loader');
 
-  loader.style.display = 'none';
-  blockBody.style.display = 'block';
+  if (loader !== null) {
+      loader.style.display = 'none';
+      blockBody.style.display = 'block';
+  }
 }
 
-function userAuth() {
+function initUserAuth() {
   const btn = document.querySelector('.auth--btn');
   const inputEmail = document.querySelector('#authEmail');
   const inputPwd = document.querySelector('#authPassword');
@@ -1009,4 +1018,34 @@ function badEmailOrPassword(blockBody) {
 
   $('input[name=email]').addClass('is-invalid');
   $('input[name=password]').addClass('is-invalid');
+}
+
+function initUserRestorePassword() {
+  const btn = document.querySelector('#restore-btn');
+  const inputEmail = document.querySelector('#restore-email');
+  const action = 'http://ria.local/user/restore-password';
+  const block = document.querySelector('.restore-window--block');
+  const blockBody = document.querySelector('.restore-window__body');
+
+  let isValid = false;
+
+  if (btn) {
+    btn.onclick = (e) => {
+
+      isValid = inputEmail.validity.valid;
+
+      if (isValid) {
+        e.preventDefault();
+        clearInputErrors();
+        btn.blur();
+
+        let data = {
+          email: inputEmail.value, 
+        }
+
+        sendDataToServer(action, data, block, blockBody);
+      }
+      
+    }
+  }
 }

@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Request;
 
 class User extends Authenticatable
 {

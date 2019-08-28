@@ -150,19 +150,20 @@
         </div>
         <div class="restore-window__body">
             <form>
-                <div class="form-group">
+                {{ csrf_field() }}
+                <div class="form-group email-group">
                     <input 
                         type="email"
                         name="email" 
                         class="form-control form-control-lg" 
-                        id="exampleInputEmail1"
+                        id="restore-email"
                         aria-describedby="emailHelp" 
                         placeholder="Почта" 
                         required="required"
                     >
                 </div>
                 <div class="restore-btn-block">
-                    <button type="submit" class="form-btn">Восстановить</button>
+                    <button type="submit" id="restore-btn" class="form-btn">Восстановить</button>
                 </div>
             </form>
             <div class="back-block">
@@ -170,6 +171,47 @@
             </div>
         </div>
         <div class="close-auth-window fadeOut">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+</div>
+
+<div class="restore-password-window">
+    <div class="restore-password-window--block">
+        <div class="restore-password-window__title">
+            <h2>Восстановление пароля</h2>
+        </div>
+        <div class="restore-password-window__body">
+            <form>
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <input
+                        type="password"
+                        class="form-control form-control-lg"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="Новый пароль"
+                        required="required"
+                        minlength="5"
+                     >
+                </div>
+                <div class="form-group">
+                    <input
+                        type="password"
+                        class="form-control form-control-lg"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="Подтвердите пароль"
+                        required="required"  m
+                        inlength="5"
+                    >
+                </div>
+                <div class="restore-password--btn-block">
+                    <button type="submit" id="restore-password-btn" class="form-btn">Восстановить</button>
+                </div>
+            </form>
+        </div>
+        <div class="close-auth-window">
             <i class="fas fa-times"></i>
         </div>
     </div>

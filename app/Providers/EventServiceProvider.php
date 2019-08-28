@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Events\ArticleView;
+use App\Events\RestorePassword;
 use App\Events\UserCreated;
 use App\Listeners\SendRegisterNotification;
+use App\Listeners\UserRestorePassword;
 use App\Listeners\UserViewedArticle;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -21,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ArticleView::class => [
             UserViewedArticle::class,
+        ],
+        RestorePassword::class => [
+            UserRestorePassword::class,
         ],
     ];
 

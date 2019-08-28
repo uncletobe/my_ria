@@ -1,6 +1,10 @@
-@extends('front.layouts.master') @section('title')
+@extends('front.layouts.master')
+
+@section('title')
 {{ $article->article_title }}
-@endsection @section('styles')
+@endsection
+
+@section('styles')
 <link rel="stylesheet" href="/plugins/owlcarousel/css/owl.carousel.min.css" />
 <link
     rel="stylesheet"
@@ -10,9 +14,17 @@
     rel="stylesheet"
     href="/plugins/fancybox-3.5.7/css/jquery.fancybox.min.css"
 />
-@endsection @section('svg') @include('front.news.single_page.includes.svg')
-@endsection @section('header') @include('front.layouts.header-secondary')
-@endsection @section('content')
+@endsection
+
+@section('svg')
+    @include('front.news.single_page.includes.svg')
+@endsection
+
+@section('header')
+    @include('front.layouts.header-secondary')
+@endsection
+
+@section('content')
 
 <div class="main-content nt container">
     <div class="row justify-content-center d-flex">
@@ -41,10 +53,12 @@
     </div>
 </div>
 
-@endsection @section('utilites')
-@include('front.news.single_page.includes.as-tape') @endsection
-@section('scripts')
-<script src="/plugins/owlcarousel/js/owl.carousel.min.js"></script>
-<script src="/plugins/fancybox-3.5.7/js/jquery.fancybox.min.js"></script>
-<script src="/js/like.js"></script>
+@endsection
+
+@section('utilites')
+    @include('front.news.single_page.includes.as-tape') @endsection
+    @section('scripts')
+    <script src="/plugins/owlcarousel/js/owl.carousel.min.js"></script>
+    <script src="/plugins/fancybox-3.5.7/js/jquery.fancybox.min.js"></script>
+    <script src="/js/like.js"></script>
 @endsection
