@@ -18,7 +18,7 @@ class CreatePasswordResetTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('email')->index();
             $table->string('token')->nullable();
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
         });
 
         Schema::table('password_reset', function ($table) {

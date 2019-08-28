@@ -31,9 +31,10 @@ class UserRestorePassword
     public function handle(RestorePassword $event)
     {
         $elem = $this->restore->getRecordByEmail($event->email);
-        $token = $this->passResModel->getToken();
+        $elem = $elem[0];
+        $token = $elem->getToken();
 
-        $this->passResModel->notify(new RestorePasswordByEmail($token, $event->email));
+        $elem->notify(new RestorePasswordByEmail($token));
     }
 
 }

@@ -10,7 +10,6 @@ class RestorePasswordByEmail extends Notification
 {
     use Queueable;
 
-    private $email;
     private $token;
 
     /**
@@ -18,9 +17,8 @@ class RestorePasswordByEmail extends Notification
      *
      * @return void
      */
-    public function __construct($token, $email)
+    public function __construct($token)
     {
-       $this->email = $email;
        $this->token = $token;
     }
 
@@ -46,7 +44,6 @@ class RestorePasswordByEmail extends Notification
         $confUrl = '/renew-password/' . 'token/' . $this->token;
 
         return (new MailMessage)
-            //->to($this->email)
             ->subject('Восстановление пароля на ria.local')
             ->greeting('Здравствуйте!')
             ->line('Вы использовали систему восстановления на ria.ru Чтобы восстановить пароль, пожалуйста, 

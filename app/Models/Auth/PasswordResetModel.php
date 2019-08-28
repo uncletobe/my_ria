@@ -35,6 +35,6 @@ class PasswordResetModel extends Model
         $this->token = $token;
         $this->created_at = Carbon::now();
 
-        return $this->update();
+        return $this->save();
     }
 }
