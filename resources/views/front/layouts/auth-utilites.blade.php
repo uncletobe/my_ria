@@ -78,7 +78,6 @@
                         name="email" 
                         class="form-control form-control-lg" 
                         id="registerEmail"
-                        aria-describedby="emailHelp" 
                         placeholder="Почта" 
                         required="required"
                     >
@@ -157,7 +156,6 @@
                         name="email" 
                         class="form-control form-control-lg" 
                         id="restore-email"
-                        aria-describedby="emailHelp" 
                         placeholder="Почта" 
                         required="required"
                     >
@@ -173,10 +171,18 @@
         <div class="close-auth-window fadeOut">
             <i class="fas fa-times"></i>
         </div>
+        <div class="profile-main-loader restore-loader">
+            <div class="loader">
+                <svg class="circular-loader"viewBox="25 25 50 50" >
+                    <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+                </svg>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="restore-password-window">
+@if(Session::has('renewPassToken'))
+    <div class="restore-password-window">
     <div class="restore-password-window--block">
         <div class="restore-password-window__title">
             <h2>Восстановление пароля</h2>
@@ -184,26 +190,26 @@
         <div class="restore-password-window__body">
             <form>
                 {{ csrf_field() }}
-                <div class="form-group">
+                <div class="form-group password-group">
                     <input
                         type="password"
+                        name="password"
                         class="form-control form-control-lg"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="restore-password"
                         placeholder="Новый пароль"
                         required="required"
                         minlength="5"
                      >
                 </div>
-                <div class="form-group">
+                <div class="form-group password-group">
                     <input
                         type="password"
+                        name="password"
                         class="form-control form-control-lg"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="restore-password-confirm"
                         placeholder="Подтвердите пароль"
-                        required="required"  m
-                        inlength="5"
+                        required="required"
+                        minlength="5"
                     >
                 </div>
                 <div class="restore-password--btn-block">
@@ -214,5 +220,13 @@
         <div class="close-auth-window">
             <i class="fas fa-times"></i>
         </div>
+        <div class="profile-main-loader renew-loader">
+            <div class="loader">
+                <svg class="circular-loader"viewBox="25 25 50 50" >
+                    <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+                </svg>
+            </div>
+        </div>
     </div>
 </div>
+@endif

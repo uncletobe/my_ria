@@ -107,4 +107,9 @@ class User extends Authenticatable
         return \Request::ip();
     }
 
+    public function setPassword($password) {
+        $this->password = \Hash::make($password);
+        return $this->update();
+    }
+
 }

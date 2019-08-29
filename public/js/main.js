@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initUserRegister();
   initUserAuth();
   initUserRestorePassword();
+  initUserRenewPassword();
 });
 
 window.onload = function() {
@@ -37,8 +38,11 @@ const headerHeight = 60;
 const socialBlockMargin = 20;
 const modal = document.querySelector(".modal-share-full");
 var notifications = {
-  confirm :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением выслано на ',
+  confirmEmail :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением выслано на ',
+  passwordRenew: 'Пароль успешно обновлен!',
+  checkEmailForResetPass: 'Сcылка для сброса пароля отправлена на ',
 };
+
 var userEmail;
 
 function initCarousel() {
@@ -746,6 +750,7 @@ function initRegisterBtn() {
   if (regBtn) {
     regBtn.onclick = (e) => {
       e.preventDefault();
+      clearInputErrors();
       authWindow.style.display = 'none';
       regWindow.style.display = 'flex';
     }
@@ -760,6 +765,7 @@ function initRestorePwdBtn() {
   if (pwdBtn) {
     pwdBtn.onclick = (e) => {
       e.preventDefault();
+      clearInputErrors();
       authWindow.style.display = 'none';
       resWindow.style.display = 'flex';
     }
@@ -908,9 +914,22 @@ function clearInputErrors() {
   $('.alert-danger').remove();
 }
 
-function addNotification(type, msg) {
+function addEmailNotification(type, msg) {
+  $('.alert-dismissible').remove();
     let tmplt = '<div class="alert alert-' + type +' alert-dismissible fade show my-alert" role="alert">' +
                         notifications[msg] + userEmail +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                    '</button>' +
+                '</div>';
+
+    $('.super-container').append(tmplt);
+}
+
+function addNotification(type, msg) {
+  $('.alert-dismissible').remove();
+    let tmplt = '<div class="alert alert-' + type +' alert-dismissible fade show my-alert" role="alert">' +
+                        notifications[msg] +
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                     '</button>' +
@@ -989,10 +1008,23 @@ function handleSuccDataFromServer(result, block, blockBody) {
 
   if (result === 'success-register') {
     $('.register-window').hide();
-    addNotification('warning', 'confirm');
+    addEmailNotification('warning', 'confirmEmail');
+    return;
+
   } else if (result === 'success-login') {
     $('.auth-window').hide();
     window.location.reload();
+    return;
+
+  } else if (result === 'password reseted') {
+    $('.restore-window').hide();
+    addEmailNotification('warning', 'checkEmailForResetPass');
+    return;
+
+  } else if(result === 'password renew') {
+    $('.restore-password-window').hide();
+    addNotification('success', 'passwordRenew');
+    return;
   }
   
 }
@@ -1041,6 +1073,40 @@ function initUserRestorePassword() {
 
         let data = {
           email: inputEmail.value, 
+        }
+
+        userEmail = inputEmail.value;
+        sendDataToServer(action, data, block, blockBody);
+      }
+      
+    }
+  }
+}
+
+function initUserRenewPassword() {
+  const btn = document.querySelector('#restore-password-btn');
+  const inputPass = document.querySelector('#restore-password');
+  const inputPassConf = document.querySelector('#restore-password-confirm');
+  const action = 'http://ria.local/user/renew-password';
+  const block = document.querySelector('.restore-password-window--block');
+  const blockBody = document.querySelector('.restore-password-window__body');
+
+  let isValid = false;
+
+  if (btn) {
+    btn.onclick = (e) => {
+
+      isValid = inputPass.validity.valid &&
+                inputPassConf.validity.valid;
+
+      if (isValid) {
+        e.preventDefault();
+        clearInputErrors();
+        btn.blur();
+
+        let data = {
+          password: inputPass.value, 
+          password_confirmation: inputPassConf.value 
         }
 
         sendDataToServer(action, data, block, blockBody);

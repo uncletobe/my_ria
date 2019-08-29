@@ -1,4 +1,8 @@
-<div class="modal-share-full"></div>
+<div class="modal-share-full"
+    @if(Session::has('renewPassToken'))
+        style="display: block;"
+    @endif
+></div>
 
 <div class="share-more-block" data-href="">
     <ul class="share-more-block__list">

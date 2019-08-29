@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\Auth\PasswordResetModel;
 use App\Models\User;
 use App\components\Constants;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +32,11 @@ class UserObserver
      */
     public function created(User $user)
     {
-
+        $restore = new PasswordResetModel();
+        $restore->user_id = $user->id;
+        $restore->email = $user->email;
+        $restore->token = $restore->setToken();
+        $restore->save();
     }
 
     /**

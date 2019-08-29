@@ -30,6 +30,10 @@ Route::post('user/restore-password', 'Auth\RestorePasswordController')->name('re
 
 Route::get('confirm/token/{token}', 'Auth\ConfirmController')->name('confirm');
 
+Route::get('renew-password/token/{token}', 'Auth\RenewPasswordController@index');
+
+Route::post('user/renew-password', 'Auth\RenewPasswordController@renewPassword')->name('renewPassword');
+
 Route::get('user/logout', 'Auth\LogoutController')->name('logout');
 
 
