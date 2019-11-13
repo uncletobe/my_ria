@@ -48,6 +48,7 @@ class UserRepository extends CoreRepository {
 
         return $result;
     }
+
 }
 
 

@@ -8,7 +8,7 @@
 
             <div class="profile-head">
 
-                @if($user->id == \Illuminate\Support\Facades\Auth::id())
+                @if(auth()->id() == $user->id)
                     <div class="logout">
                         <a href="/user/logout">
                             Выйти

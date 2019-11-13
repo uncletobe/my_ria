@@ -14,7 +14,11 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/responsive.css">
 </head>
-<body>
+<body
+    @if(Session::has('renewPassToken'))
+        style="overflow: hidden;"
+    @endif
+>
 <div class="svg-block">
     <svg viewBox="0 0 40 40" id="icon-share" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.13 8.876v15.039h1.75V8.92l3.01 3.054 1.246-1.229L21.13 6.68a1.43 1.43 0 0 0-1.127-.555 1.347 1.347 0 0 0-1.131.543l-4.007 3.98 1.233 1.24z">

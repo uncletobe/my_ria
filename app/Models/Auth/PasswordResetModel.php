@@ -27,8 +27,8 @@ class PasswordResetModel extends Model
         return false;
     }
 
-    private function setToken() {
-        return \Str::random(rand(15, 25));
+    public function setToken() {
+        return \Str::random(rand(35, 50));
     }
 
     private function saveToken($token) {
@@ -36,5 +36,11 @@ class PasswordResetModel extends Model
         $this->created_at = Carbon::now();
 
         return $this->save();
+    }
+
+    public function resetToken() {
+        $this->token = null;
+
+        return $this->update();
     }
 }

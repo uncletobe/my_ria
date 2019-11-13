@@ -903,13 +903,21 @@ a:hover {
 	z-index: 1003;
 }
 
+.restore-password-window--block {
+	height: 450px;
+}
+
+.restore-window--block {
+	height: 410px;
+}
+
 .auth-window--block,
 .register-window--block {
 	min-height: 585px;
 }
 
 .restore-password-window {
-	height: 450px;
+	display: flex;
 }
 
 .auth-window__title h2,
@@ -1884,13 +1892,22 @@ a:hover {
 
 .profile-main-loader{
 	display: none;
-    left: 50% !important;
-    margin-left:-100px;
-    position: fixed !important;
-    top: 50% !important;
+    left: 55% !important;
+    margin-left:-120px;
+    /* position: fixed !important; */
+    position: absolute;
+    top: 50%;
     margin-top: -100px;
     width: 45px;
     z-index: 9000 !important;
+}
+
+.restore-loader {
+	top: 65%;
+}
+
+.renew-loader {
+	top: 60%;
 }
 
 .profile-main-loader .loader {

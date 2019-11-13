@@ -28,6 +28,16 @@ class PasswordResetRepository extends CoreRepository {
         return $result;
     }
 
+    public function getRecordByToken($token) {
+
+        $result = $this->startConditions()
+            ->select('id', 'user_id', 'email', 'updated_at')
+            ->where('token', $token)
+            ->get();
+
+        return $result;
+    }
+
 }
 
 

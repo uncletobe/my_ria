@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initUserRegister();
   initUserAuth();
   initUserRestorePassword();
+  initUserRenewPassword();
 });
 
 window.onload = function() {
@@ -30,6 +31,7 @@ window.onload = function() {
   initCommentLikeBtn();
 };
 
+const baseUrl = 'http://ria.local/';
 const socialBlockMargin = 20;
 const headerHeight = 60;
 const modal = document.querySelector(".modal-share-full");
@@ -37,8 +39,11 @@ var targetModal;
 var stopForArticleSharebar;
 var isOpenedModal = false;
 var notifications = {
-  confirm :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением выслано на ',
+  confirmEmail :'Для окончания регистрации необходимо подтвердить адрес электронной почты, письмо с подтверждением выслано на ',
+  passwordRenew: 'Пароль успешно обновлен!',
+  checkEmailForResetPass: 'Сcылка для сброса пароля отправлена на ',
 };
+
 var userEmail;
 
 function initCarousel() {
@@ -161,7 +166,7 @@ function initHeaderMenu() {
 
   if (header) {
 
-    handleScroll(header, svgList);
+    // handleScroll(header, svgList);
 
     window.addEventListener("scroll", () => {
       handleScroll(header, svgList);
@@ -746,6 +751,7 @@ function initRegisterBtn() {
   if (regBtn) {
     regBtn.onclick = (e) => {
       e.preventDefault();
+      clearInputErrors();
       authWindow.style.display = 'none';
       regWindow.style.display = 'flex';
     }
@@ -760,6 +766,7 @@ function initRestorePwdBtn() {
   if (pwdBtn) {
     pwdBtn.onclick = (e) => {
       e.preventDefault();
+      clearInputErrors();
       authWindow.style.display = 'none';
       resWindow.style.display = 'flex';
     }
@@ -800,7 +807,7 @@ function initUserRegister() {
   const inputEmail = document.querySelector('#registerEmail');
   const inputPwd = document.querySelector('#registerPassword');
   const checkbox = document.querySelector('#agreementCheck');
-  const action = 'http://ria.local/user/register';
+  const action = baseUrl + 'user/register';
   const block = document.querySelector('.register-window--block');
   const blockBody = document.querySelector('.register-window__body');
 
@@ -908,9 +915,22 @@ function clearInputErrors() {
   $('.alert-danger').remove();
 }
 
-function addNotification(type, msg) {
+function addEmailNotification(type, msg) {
+  $('.alert-dismissible').remove();
     let tmplt = '<div class="alert alert-' + type +' alert-dismissible fade show my-alert" role="alert">' +
                         notifications[msg] + userEmail +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                    '</button>' +
+                '</div>';
+
+    $('.super-container').append(tmplt);
+}
+
+function addNotification(type, msg) {
+  $('.alert-dismissible').remove();
+    let tmplt = '<div class="alert alert-' + type +' alert-dismissible fade show my-alert" role="alert">' +
+                        notifications[msg] +
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                     '</button>' +
@@ -948,7 +968,7 @@ function initUserAuth() {
   const btn = document.querySelector('.auth--btn');
   const inputEmail = document.querySelector('#authEmail');
   const inputPwd = document.querySelector('#authPassword');
-  const action = 'http://ria.local/user/login';
+  const action = baseUrl + 'user/login';
   const block = document.querySelector('.auth-window--block');
   const blockBody = document.querySelector('.auth-window__body');
 
@@ -987,13 +1007,51 @@ function handleSuccDataFromServer(result, block, blockBody) {
   closeModalWindow();
   hidePreloader(block, blockBody);
 
-  if (result === 'success-register') {
-    $('.register-window').hide();
-    addNotification('warning', 'confirm');
-  } else if (result === 'success-login') {
-    $('.auth-window').hide();
-    window.location.reload();
+  switch (result) {
+
+    case "success-register":
+      $('.register-window').hide();
+      addEmailNotification('warning', 'confirmEmail');
+      break;
+
+    case "success-login":
+        $('.auth-window').hide();
+        window.location.reload();
+        break;
+
+    case "password reseted": 
+      $('.restore-window').hide();
+      addEmailNotification('warning', 'checkEmailForResetPass');
+      break;
+
+    case "password renew": 
+      $('.restore-password-window').hide();
+      addNotification('success', 'passwordRenew');
+      break;
   }
+
+  return;
+
+  // if (result === 'success-register') {
+  //   $('.register-window').hide();
+  //   addEmailNotification('warning', 'confirmEmail');
+  //   return;
+
+  // } else if (result === 'success-login') {
+  //   $('.auth-window').hide();
+  //   window.location.reload();
+  //   return;
+
+  // } else if (result === 'password reseted') {
+  //   $('.restore-window').hide();
+  //   addEmailNotification('warning', 'checkEmailForResetPass');
+  //   return;
+
+  // } else if(result === 'password renew') {
+  //   $('.restore-password-window').hide();
+  //   addNotification('success', 'passwordRenew');
+  //   return;
+  // }
   
 }
 
@@ -1023,7 +1081,7 @@ function badEmailOrPassword(blockBody) {
 function initUserRestorePassword() {
   const btn = document.querySelector('#restore-btn');
   const inputEmail = document.querySelector('#restore-email');
-  const action = 'http://ria.local/user/restore-password';
+  const action = baseUrl + 'user/restore-password';
   const block = document.querySelector('.restore-window--block');
   const blockBody = document.querySelector('.restore-window__body');
 
@@ -1041,6 +1099,40 @@ function initUserRestorePassword() {
 
         let data = {
           email: inputEmail.value, 
+        }
+
+        userEmail = inputEmail.value;
+        sendDataToServer(action, data, block, blockBody);
+      }
+      
+    }
+  }
+}
+
+function initUserRenewPassword() {
+  const btn = document.querySelector('#restore-password-btn');
+  const inputPass = document.querySelector('#restore-password');
+  const inputPassConf = document.querySelector('#restore-password-confirm');
+  const action = baseUrl + 'user/renew-password';
+  const block = document.querySelector('.restore-password-window--block');
+  const blockBody = document.querySelector('.restore-password-window__body');
+
+  let isValid = false;
+
+  if (btn) {
+    btn.onclick = (e) => {
+
+      isValid = inputPass.validity.valid &&
+                inputPassConf.validity.valid;
+
+      if (isValid) {
+        e.preventDefault();
+        clearInputErrors();
+        btn.blur();
+
+        let data = {
+          password: inputPass.value, 
+          password_confirmation: inputPassConf.value 
         }
 
         sendDataToServer(action, data, block, blockBody);
