@@ -6,12 +6,13 @@ use App\components\PictureHelper;
 use App\Extensions\Redis\LikeModel;
 use App\Extensions\Redis\RedisUtilites;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\components\Storage;
 
 class NewsArticle extends BaseArticleModel
 {
     use SoftDeletes;
     use PictureHelper;
+
+    const PUBLISHED = 1;
 
     private $set = 'newsArticle';
     private $resolution = [

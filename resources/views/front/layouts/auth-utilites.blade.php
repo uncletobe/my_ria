@@ -202,7 +202,7 @@
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
                         placeholder="Подтвердите пароль"
-                        required="required"  m
+                        required="required"
                         inlength="5"
                     >
                 </div>

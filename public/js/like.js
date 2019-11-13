@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	const likeBtn = $('.article .like-icon');
-	const funnyBtn = $('.article .funny-icon');
-	const amazingBtn = $('.article .amazing-icon');
-	const sadBtn = $('.article .sad-icon');
-	const angryBtn = $('.article .angry-icon');
-	const unlikeBtn = $('.article .unlike-icon');
+	const article = $('.article');
+	const likeBtn = article.filter('.like-icon');
+	const funnyBtn = article.filter('.funny-icon');
+	const amazingBtn = article.filter('.amazing-icon');
+	const sadBtn = article.filter('.sad-icon');
+	const angryBtn = article.filter('.angry-icon');
+	const unlikeBtn = article.filter('.unlike-icon');
 
 	var emotions = {
 		'like': false,

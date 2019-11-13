@@ -16,11 +16,17 @@ class AuthorArticleController extends Controller
     private $commentRepository;
     private $articleTagRepository;
 
-    public function __construct() {
-        $this->authorArticleRepository = new AuthorArticleRepository();
-        $this->commentRepository = new CommentRepository();
-        $this->articleTagRepository = new ArticleTagRepository();
-        $this->articleRepository = new ArticleRepository();
+    public function __construct
+                                (
+                                    AuthorArticleRepository $authorArticleRepository,
+                                    CommentRepository $commentRepository,
+                                    ArticleTagRepository $articleTagRepository,
+                                    ArticleRepository $articleRepository
+                                ) {
+        $this->authorArticleRepository = $authorArticleRepository;
+        $this->commentRepository = $commentRepository;
+        $this->articleTagRepository = $articleTagRepository;
+        $this->articleRepository = $articleRepository;
     }
 
     public function index($articleSlug) {

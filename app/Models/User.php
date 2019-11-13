@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\components\Constants;
 use App\components\PictureHelper;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
@@ -14,6 +13,11 @@ class User extends Authenticatable
 {
     use Notifiable;
     use PictureHelper;
+
+    const UNCONFIRMED_USER = 5;
+    const DEFAULT_USER_ROLE = 4;
+    const IS_BANNED_DEFAULT = 0;
+    const USER_NOT_VERIFIED  = 0;
 
     public $howLongRegister;
 
@@ -68,8 +72,7 @@ class User extends Authenticatable
         }
 
         $this->email_verified_at = Carbon::now();
-        $this->updated_at = Carbon::now();
-        $this->role_id = Constants::DEFAULT_USER_ROLE;
+        $this->role_id = User::DEFAULT_USER_ROLE;
         $this->is_verified = 1;
         $result = $this->update();
 
@@ -101,10 +104,6 @@ class User extends Authenticatable
         if(empty($result)) $result = 0;
 
         return $result;
-    }
-
-    public static function getUserIp() {
-        return \Request::ip();
     }
 
 }
