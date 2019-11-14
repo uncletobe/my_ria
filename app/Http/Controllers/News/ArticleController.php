@@ -4,7 +4,6 @@ namespace App\Http\Controllers\News;
 
 use App\Events\ArticleView;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Repositories\ArticleTagRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\CommentRepository;

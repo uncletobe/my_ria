@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Events\RestorePassword;
 use App\Http\Requests\RestorePasswordRequest;
 use App\Http\Controllers\Controller;
-use http\Env\Response;
 
 class RestorePasswordController extends Controller
 {

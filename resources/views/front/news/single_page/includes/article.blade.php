@@ -90,11 +90,11 @@
                 <div class="article-tags-block">
 
                     @foreach($tags as $tag)
-                        <a href="/category/{{ $tag[0]->category_slug }}">
+                        <a href={{ url('category', [$tag[0]->category_slug]) }}>
                             {{ $tag[0]->category_title }}
                         </a>
                         @foreach($tag as $subtag)
-                            <a href="/tag/{{ $subtag->tag_slug }}">
+                            <a href={{ url('tag', [$subtag->tag_slug]) }}>
                                 {{ $subtag->tag_title }}
                             </a>
                         @endforeach

@@ -8,11 +8,11 @@
 
     <title>@yield('title')</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/plugins/fontawesome-free-5.9.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href= {{ asset("css/bootstrap.min.css") }}>
+    <link rel="stylesheet" type="text/css" href= {{ asset("plugins/fontawesome-free-5.9.0/css/all.min.css") }}>
     @yield('styles')
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href= {{ asset("css/main.css") }}>
+    <link rel="stylesheet" type="text/css" href= {{ asset("css/responsive.css") }}>
 </head>
 <body
     @if(Session::has('renewPassToken'))
@@ -49,10 +49,10 @@
 
 </div>
 
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script src= {{ asset("js/jquery-3.3.1.min.js") }}></script>
+<script src= {{ asset("js/bootstrap.min.js") }}></script>
 @yield('scripts')
-<script src="/js/main.js"></script>
+<script src= {{ asset("js/main.js") }}></script>
 
 </body>
 </html>

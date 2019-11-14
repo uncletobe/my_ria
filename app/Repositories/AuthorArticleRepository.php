@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\components\Constants;
 use App\Models\News\AuthorArticle as Model;
 use App\Models\News\NewsArticle;
 

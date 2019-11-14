@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+	const baseUrl = 'http://ria.local';
 	const article = $('.article');
 	const likeBtn = article.find('.like-icon');
 	const funnyBtn = article.find('.funny-icon');
@@ -17,12 +18,25 @@ document.addEventListener("DOMContentLoaded", () => {
 		'unlike': false,
 	};
 
+	var action = getAction();
+
 	initLikeBtn();
 	initFunnyBtn();
 	initAmazingBtn();
 	initSadBtn();
 	initAngryBtn();
 	initUnlikeBtn();
+
+	function getAction() {
+		const pos = window.location.href.indexOf('author-article');
+		if (pos > 0) {
+			return '/author-article/';
+		} else {
+			return '/news/';
+		}
+
+		console.log(action);
+	}
 
 	function initLikeBtn() {
 		if (likeBtn.length) {
@@ -177,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function sendDataToServer(plusEmotion) {
 
 		let slug = getSlug();
-		let url = '/news/' + slug + '/addassessment';
+		let url = baseUrl + action + slug + '/addassessment';
 
 		let data = {
 			slug: slug,
@@ -187,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		fetch(url, {
 		    headers: {
 		      'Content-Type': 'application/json',
+		      "_token": $('meta[name="csrf-token"]').attr('content'),
 		    },
 		    method: 'POST',
 		    cache: 'no-cache',

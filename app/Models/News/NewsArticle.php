@@ -3,8 +3,6 @@
 namespace App\Models\News;
 
 use App\components\PictureHelper;
-use App\Extensions\Redis\LikeModel;
-use App\Extensions\Redis\RedisUtilites;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NewsArticle extends BaseArticleModel
@@ -14,7 +12,6 @@ class NewsArticle extends BaseArticleModel
 
     const PUBLISHED = 1;
 
-    private $set = 'newsArticle';
     private $resolution = [
         '925' => '_925x520',
         '768' => '_925x231',
@@ -36,11 +33,4 @@ class NewsArticle extends BaseArticleModel
         return $this->hasMany('App\Models\News\ArticleTag', 'article_id');
     }
 
-    public function getCountEmotion($emotion) {
-        return LikeModel::getCountEmotion($this->set, $this->id, $emotion);
-    }
-
-    public function getViews() {
-        return RedisUtilites::getViews($this->id);
-    }
 }

@@ -5,8 +5,8 @@
 @endsection
 
 @section('styles')
-	<link rel="stylesheet" href="/plugins/owlcarousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/plugins/owlcarousel/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href={{ asset("plugins/owlcarousel/css/owl.carousel.min.css") }}>
+    <link rel="stylesheet" href={{ asset("plugins/owlcarousel/css/owl.theme.default.min.css") }}>
 @endsection
 
 @section('header')
@@ -36,5 +36,5 @@
 @endsection
 
 @section('scripts')
-	<script src="plugins/owlcarousel/js/owl.carousel.min.js"></script>
+	<script src={{ asset("plugins/owlcarousel/js/owl.carousel.min.js") }}></script>
 @endsection

@@ -8,9 +8,9 @@
 
             <div class="profile-head">
 
-                @if(auth()->id() == $user->id)
+                @if(Auth::id() == $user->id)
                     <div class="logout">
-                        <a href="/user/logout">
+                        <a href= {{ url("user/logout") }}>
                             Выйти
                         </a>
                     </div>

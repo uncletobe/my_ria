@@ -5,14 +5,14 @@
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="/plugins/owlcarousel/css/owl.carousel.min.css" />
+<link rel="stylesheet" href={{ asset("plugins/owlcarousel/css/owl.carousel.min.css") }} />
 <link
     rel="stylesheet"
-    href="/plugins/owlcarousel/css/owl.theme.default.min.css"
+    href={{ asset("plugins/owlcarousel/css/owl.theme.default.min.css") }}
 />
 <link
     rel="stylesheet"
-    href="/plugins/fancybox-3.5.7/css/jquery.fancybox.min.css"
+    href={{ asset("plugins/fancybox-3.5.7/css/jquery.fancybox.min.css") }}
 />
 @endsection
 
@@ -58,7 +58,7 @@
 @section('utilites')
     @include('front.news.single_page.includes.as-tape') @endsection
     @section('scripts')
-    <script src="/plugins/owlcarousel/js/owl.carousel.min.js"></script>
-    <script src="/plugins/fancybox-3.5.7/js/jquery.fancybox.min.js"></script>
-    <script src="/js/like.js"></script>
+    <script src={{ asset("plugins/owlcarousel/js/owl.carousel.min.js") }}></script>
+    <script src={{ asset("plugins/fancybox-3.5.7/js/jquery.fancybox.min.js") }}></script>
+    <script src={{ asset("js/like.js") }}></script>
 @endsection

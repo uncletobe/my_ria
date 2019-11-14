@@ -30,7 +30,7 @@
                                     </svg>
                                 </span>
                             </div>
-                            <a href="/author-article/{{ $news->article_slug }}" class="author-block__body">
+                            <a href={{ url('author-article', [$news->article_slug]) }} class="author-block__body">
                                 <div class="author-block__image">
                                     <picture>
                                         <source
@@ -45,7 +45,7 @@
                                                 $news->article_picture_preview_path, 'min'
                                             ) }}"
                                         />
-                                        <img src="img/default.jpg" alt="" />
+                                        <img src={{ asset("img/default.jpg") }} alt="" />
                                     </picture>
                                     <span class="author-block__image__info">
                                         {{ $news->article_title }}

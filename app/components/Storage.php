@@ -10,7 +10,7 @@ class Storage {
     }
 
     public static function getDefaultimg() {
-        return '/img/default.jpg';
+        return url('img/default.jpg');
     }
 
 }

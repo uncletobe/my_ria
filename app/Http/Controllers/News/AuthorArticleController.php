@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\News;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\AuthorArticleRepository;
+use App\Events\ArticleView;
 use App\Repositories\CommentRepository;
 use App\Repositories\ArticleTagRepository;
 use App\Repositories\ArticleRepository;
@@ -43,7 +43,9 @@ class AuthorArticleController extends Controller
         $comments = $this->commentRepository->getCommentsForArticle($article->id);
         $recommendCarousel = $this->articleRepository->getArticlesForRecommendCarousel();
 
-        //dd($tags);
+        $userIp = \Request::ip();
+
+        event(new ArticleView($article->id, $userIp));
 
         return view('front.news.single_page.single-page',
             compact(
