@@ -15,7 +15,7 @@ class CreateNewsTagsTable extends Migration
     {
         Schema::create('news_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('parent_id')->unsigned();
+            $table->bigInteger('parent_id');
             $table->string('tag_title');
             $table->string('tag_slug')->unique();
             $table->timestamps();

@@ -45,7 +45,7 @@ class ConfirmEmail extends Notification implements ShouldQueue
         $confUrl = '/confirm/' . 'token/' . $this->token;
 
         return (new MailMessage)
-                    ->subject('Завершение регистрации на ria.local')
+                    ->subject('Завершение регистрации на ' . config('app.name') . '.')
                     ->greeting('Здравствуйте!')
                     ->line('Для завершения регистрации на сайте ria.local вам необходимо подтвердить свой email.
                         Для этого просто нажмите по кнопке ниже.')

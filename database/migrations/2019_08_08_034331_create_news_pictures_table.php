@@ -15,7 +15,7 @@ class CreateNewsPicturesTable extends Migration
     {
         Schema::create('news_pictures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('article_id')->unsigned();
+            $table->bigInteger('article_id');
             $table->string('news_picture_path')->nullable();
             $table->string('news_picture_alt')->nullable();
             $table->timestamps();

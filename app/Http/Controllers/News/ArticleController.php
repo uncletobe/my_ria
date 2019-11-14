@@ -14,11 +14,17 @@ class ArticleController extends Controller
 {
     private $articleRepository;
     private $commentRepository;
+    private $articleTagRepository;
 
-    public function __construct() {
-        $this->articleRepository = new ArticleRepository();
-        $this->commentRepository = new CommentRepository();
-        $this->articleTagRepository = new ArticleTagRepository();
+    public function __construct
+                                (
+                                    ArticleRepository $articleRepository,
+                                    CommentRepository $commentRepository,
+                                    ArticleTagRepository $articleTagRepository
+                                ) {
+        $this->articleRepository = $articleRepository;
+        $this->commentRepository = $commentRepository;
+        $this->articleTagRepository = $articleTagRepository;
     }
 
     public function index($articleSlug) {
@@ -35,7 +41,7 @@ class ArticleController extends Controller
         $comments = $this->commentRepository->getCommentsForArticle($article->id);
         $recommendCarousel = $this->articleRepository->getArticlesForRecommendCarousel();
 
-        $userIp = User::getUserIp();
+        $userIp = \Request::ip();
 
         event(new ArticleView($article->id, $userIp));
 

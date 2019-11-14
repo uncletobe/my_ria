@@ -44,7 +44,7 @@ class RestorePasswordByEmail extends Notification
         $confUrl = '/renew-password/' . 'token/' . $this->token;
 
         return (new MailMessage)
-            ->subject('Восстановление пароля на ria.local')
+            ->subject('Восстановление пароля на ' . config('app.name') . '.')
             ->greeting('Здравствуйте!')
             ->line('Вы использовали систему восстановления на ria.ru Чтобы восстановить пароль, пожалуйста, 
                 пройдите по ссылке ниже, нажав на неё или скопировать её в адресную строку браузера:')

@@ -10,10 +10,12 @@ use App\Repositories\ArticleRepository;
 
 class NewsLikeController extends Controller
 {
-    public function addAssessment(Request $request) {
+    private $articleRepository;
 
-        $articleRepository = new ArticleRepository();
-        $article = ($articleRepository->getIdBySlug($request['slug']));
+    public function addAssessment(Request $request, ArticleRepository $articleRepository) {
+
+        $this->articleRepository = $articleRepository;
+        $article = ($this->articleRepository->getIdBySlug($request['slug']));
 
         if (!$article) {
             return abort(404);

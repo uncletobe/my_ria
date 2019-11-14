@@ -12,10 +12,10 @@ class RenewPasswordController extends Controller
     private $pasResRepos;
     private $userRepos;
 
-    public function __construct()
+    public function __construct(PasswordResetRepository $passwordResetRepository, UserRepository $userRepository)
     {
-        $this->pasResRepos = new PasswordResetRepository();
-        $this->userRepos = new UserRepository();
+        $this->pasResRepos = $passwordResetRepository;
+        $this->userRepos = $userRepository;
     }
 
     public function index($token)

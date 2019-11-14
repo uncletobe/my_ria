@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	const likeBtn = $('.article .like-icon');
-	const funnyBtn = $('.article .funny-icon');
-	const amazingBtn = $('.article .amazing-icon');
-	const sadBtn = $('.article .sad-icon');
-	const angryBtn = $('.article .angry-icon');
-	const unlikeBtn = $('.article .unlike-icon');
+	const article = $('.article');
+	const likeBtn = article.find('.like-icon');
+	const funnyBtn = article.find('.funny-icon');
+	const amazingBtn = article.find('.amazing-icon');
+	const sadBtn = article.find('.sad-icon');
+	const angryBtn = article.find('.angry-icon');
+	const unlikeBtn = article.find('.unlike-icon');
 
 	var emotions = {
 		'like': false,
@@ -98,49 +99,60 @@ document.addEventListener("DOMContentLoaded", () => {
 	function isBtnPressed(emotion) {
 		let result = true;
 
-		switch (emotion) {
-			case 'like':
-				if (!emotions['like']) {
-					emotions['like'] = true;
-					result = false;
-				}
-				break;
+		for(key in emotions) {
+			if(emotion == key && emotions[key] == false) {
+				emotions[key] = true;
+				result = false;
 
-			case 'funny':
-				if (!emotions['funny']) {
-					emotions['funny'] = true;
-					result = false;
-				}
-				break;
-
-			case 'amazing':
-				if (!emotions['amazing']) {
-					emotions['amazing'] = true;
-					result = false;
-				}
-				break;
-
-			case 'sad':
-				if (!emotions['sad']) {
-					emotions['sad'] = true;
-					result = false;
-				}
-				break;
-
-			case 'angry':
-				if (!emotions['angry']) {
-					emotions['angry'] = true;
-					result = false;
-				}
-				break;
-
-			case 'unlike':
-				if (!emotions['unlike']) {
-					emotions['unlike'] = true;
-					result = false;
-				}
-				break;
+			} else if (emotion != key && emotions[key] == true) {
+				emotion[key] = false;
+			}
 		}
+
+
+		// switch (emotion) {
+		// 	case 'like':
+		// 		if (!emotions['like']) {
+		// 			emotions['like'] = true;
+		// 			result = false;
+		// 		}
+		// 		break;
+
+		// 	case 'funny':
+		// 		if (!emotions['funny']) {
+		// 			emotions['funny'] = true;
+		// 			result = false;
+		// 		}
+		// 		break;
+
+		// 	case 'amazing':
+		// 		if (!emotions['amazing']) {
+		// 			emotions['amazing'] = true;
+		// 			result = false;
+		// 		}
+		// 		break;
+
+		// 	case 'sad':
+		// 		if (!emotions['sad']) {
+		// 			emotions['sad'] = true;
+		// 			result = false;
+		// 		}
+		// 		break;
+
+		// 	case 'angry':
+		// 		if (!emotions['angry']) {
+		// 			emotions['angry'] = true;
+		// 			result = false;
+		// 		}
+		// 		break;
+
+		// 	case 'unlike':
+		// 		if (!emotions['unlike']) {
+		// 			emotions['unlike'] = true;
+		// 			result = false;
+		// 		}
+		// 		break;
+		// }
 
 		return result;
 	}
@@ -158,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (arr[emotion]) {
 			arr[emotion].children('.count').html(value);
-			emotions[emotion] = false;
+			//emotions[emotion] = false;
 		}
 	}	
 

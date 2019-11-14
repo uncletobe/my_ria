@@ -11,10 +11,10 @@ class HomeController extends Controller
     private $articleRepository;
     private $authorArticleRepository;
 
-    public function __construct()
+    public function __construct(ArticleRepository $articleRepository, AuthorArticleRepository $authorArticleRepository)
     {
-        $this->articleRepository = new ArticleRepository();
-        $this->authorArticleRepository = new AuthorArticleRepository();
+        $this->articleRepository = $articleRepository;
+        $this->authorArticleRepository = $authorArticleRepository;
     }
 
 
