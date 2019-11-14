@@ -22,6 +22,7 @@ class HomeController extends Controller
 
         $mainArticles = $this->articleRepository->getMainNewsArticles();
         $readableArticles = $this->articleRepository->getReadableArticles();
+
         $chessBoard = $this->articleRepository->getArticlesForChessBoard();
         $newsCarousel = $this->articleRepository->getArticlesForNewsCarousel();
         $authorNews = $this->authorArticleRepository->getAuthorArticles();
