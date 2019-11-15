@@ -21,6 +21,12 @@ class LikeModel
         'unlike',
     ];
 
+    /**
+     * LikeModel constructor.
+     * @param $type string
+     * @param $articleId int
+     * @param $userId int
+     */
     public function __construct($type, $articleId, $userId)
     {
         $this->set = $type;

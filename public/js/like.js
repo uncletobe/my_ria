@@ -191,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	function sendDataToServer(plusEmotion) {
 
 		let slug = getSlug();
-		let url = baseUrl + action + slug + '/addassessment';
+		// let url = baseUrl + action + slug + '/addassessment';
+		let url = baseUrl + '/addassessment';
 
 		let data = {
 			slug: slug,
@@ -201,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		fetch(url, {
 		    headers: {
 		      'Content-Type': 'application/json',
-		      "_token": $('meta[name="csrf-token"]').attr('content'),
+		      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
 		    },
 		    method: 'POST',
 		    cache: 'no-cache',
@@ -211,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
   		.then(res => res.json())
   		.then(res => {
   				handleResponseFromServer(res);
-  			});
+  		});
 	}
 
   

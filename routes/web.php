@@ -42,16 +42,13 @@ Route::get('user/logout', 'Auth\LogoutController')->name('logout');
 //    return 'Sent';
 //});
 
-Route::match(['get'], 'user/register', function(){
-    return abort(404);
-});
+//Route::match(['get'], 'user/register', function(){
+//    return abort(404);
+//});
 
 /* --> Redis */
 
-Route::post('news/{articleSlug}/addassessment', 'News\NewsLikeController@addAssessment')
-    ->middleware('auth-user')
+Route::post('addassessment', 'News\NewsLikeController@addAssessment')
+    //->middleware('auth-user')
     ->name('addAssessment');
 
-Route::post('author-article/{articleSlug}/addassessment', 'News\1NewsLikeController@addAssessment')
-    ->middleware('auth-user')
-    ->name('addAuthorAssessment');

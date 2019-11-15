@@ -11,8 +11,12 @@ use App\Repositories\ArticleRepository;
 class NewsLikeController extends Controller
 {
     private $articleRepository;
+    private $availablesTypes = [
+
+        ];
 
     public function addAssessment(Request $request, ArticleRepository $articleRepository) {
+        
 
         $this->articleRepository = $articleRepository;
         $article = ($this->articleRepository->getIdBySlug($request['slug']));
