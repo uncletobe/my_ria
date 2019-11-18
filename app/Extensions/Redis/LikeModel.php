@@ -84,9 +84,9 @@ class LikeModel
         return Redis::scard("{$set}:{$articleId }:{$emotion}");
     }
 
-    public static function abc($emotion) {
-        return Redis::smembers('newsArticle:496:'.$emotion);
-    }
+//    public static function abc($emotion) {
+//        return Redis::smembers('newsArticle:496:'.$emotion);
+//    }
 
     public function addCountForUserLikes() {
         if (empty($this->minusEmotionName)) {

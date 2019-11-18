@@ -184,19 +184,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (arr[emotion]) {
 			arr[emotion].children('.count').html(value);
-			//emotions[emotion] = false;
+			emotions[emotion] = false;
 		}
 	}	
 
 	function sendDataToServer(plusEmotion) {
 
 		let slug = getSlug();
-		// let url = baseUrl + action + slug + '/addassessment';
 		let url = baseUrl + '/addassessment';
 
 		let data = {
 			slug: slug,
 			plusEmotion: plusEmotion,
+			type: getType(),
 		}
 
 		fetch(url, {
@@ -221,6 +221,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		let arr = url.split('/');
 
 		return arr[2];
+	}
+
+	function getType() {
+		let url = window.location.pathname;
+		let arr = url.split('/');
+
+		return arr[1];
 	}
 
 	function handleResponseFromServer(res) {

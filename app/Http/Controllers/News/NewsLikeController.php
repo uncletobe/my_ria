@@ -3,23 +3,28 @@
 namespace App\Http\Controllers\News;
 
 use App\Extensions\Redis\LikeModel;
-use Illuminate\Http\Request;
+use App\Http\Requests\NewsLikeRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\ArticleRepository;
+use App\Repositories\AuthorArticleRepository;
 
 class NewsLikeController extends Controller
 {
     private $articleRepository;
-    private $availablesTypes = [
+    private $authorArticleRepository;
 
-        ];
+    public function __invoke(
+                                NewsLikeRequest $request,
+                                ArticleRepository $articleRepository,
+                                AuthorArticleRepository $authorArticleRepository
+                            ) {
 
-    public function addAssessment(Request $request, ArticleRepository $articleRepository) {
-        
 
         $this->articleRepository = $articleRepository;
-        $article = ($this->articleRepository->getIdBySlug($request['slug']));
+        $this->authorArticleRepository = $authorArticleRepository;
+
+        $article = ($this->getRepository($request['type'])->getIdBySlug($request['slug']));
 
         if (!$article) {
             return abort(404);
@@ -33,5 +38,16 @@ class NewsLikeController extends Controller
         $result = $likeModel->handleEmotion($request['plusEmotion']);
 
       return \Response::json($result);
+    }
+
+    private function getRepository($type) {
+
+            switch ($type) {
+                case 'author-article':
+                    return $this->authorArticleRepository;
+
+                case 'news':
+                    return $this->articleRepository;
+            }
     }
 }

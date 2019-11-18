@@ -48,7 +48,7 @@ Route::get('user/logout', 'Auth\LogoutController')->name('logout');
 
 /* --> Redis */
 
-Route::post('addassessment', 'News\NewsLikeController@addAssessment')
-    //->middleware('auth-user')
+Route::post('addassessment', 'News\NewsLikeController')
+    ->middleware('auth-user')
     ->name('addAssessment');
 
