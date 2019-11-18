@@ -33,7 +33,7 @@
 <div class="header__menu article-header">
 
     @if (Auth::check())
-        <a class="header__menu-profile" href={{ url("user/id/", [Auth::id()]) }}>
+        <a class="header__menu-profile" href={{ url("user/id", [Auth::id()]) }}>
         <span class="header__menu-icon-u">
             <svg viewBox="0 0 40 40" id="header_icon-userL" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"

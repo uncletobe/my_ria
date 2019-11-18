@@ -18,25 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		'unlike': false,
 	};
 
-	var action = getAction();
-
 	initLikeBtn();
 	initFunnyBtn();
 	initAmazingBtn();
 	initSadBtn();
 	initAngryBtn();
 	initUnlikeBtn();
-
-	function getAction() {
-		const pos = window.location.href.indexOf('author-article');
-		if (pos > 0) {
-			return '/author-article/';
-		} else {
-			return '/news/';
-		}
-
-		console.log(action);
-	}
 
 	function initLikeBtn() {
 		if (likeBtn.length) {
@@ -119,54 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
 				result = false;
 
 			} else if (emotion != key && emotions[key] == true) {
-				emotion[key] = false;
+				emotions[key] = false;
 			}
 		}
-
-
-		// switch (emotion) {
-		// 	case 'like':
-		// 		if (!emotions['like']) {
-		// 			emotions['like'] = true;
-		// 			result = false;
-		// 		}
-		// 		break;
-
-		// 	case 'funny':
-		// 		if (!emotions['funny']) {
-		// 			emotions['funny'] = true;
-		// 			result = false;
-		// 		}
-		// 		break;
-
-		// 	case 'amazing':
-		// 		if (!emotions['amazing']) {
-		// 			emotions['amazing'] = true;
-		// 			result = false;
-		// 		}
-		// 		break;
-
-		// 	case 'sad':
-		// 		if (!emotions['sad']) {
-		// 			emotions['sad'] = true;
-		// 			result = false;
-		// 		}
-		// 		break;
-
-		// 	case 'angry':
-		// 		if (!emotions['angry']) {
-		// 			emotions['angry'] = true;
-		// 			result = false;
-		// 		}
-		// 		break;
-
-		// 	case 'unlike':
-		// 		if (!emotions['unlike']) {
-		// 			emotions['unlike'] = true;
-		// 			result = false;
-		// 		}
-		// 		break;
-		// }
 
 		return result;
 	}
@@ -184,7 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (arr[emotion]) {
 			arr[emotion].children('.count').html(value);
-			emotions[emotion] = false;
 		}
 	}	
 
