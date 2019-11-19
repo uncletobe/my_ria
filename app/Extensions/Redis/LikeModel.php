@@ -40,7 +40,7 @@ class LikeModel
         $this->addEmotion($plusEmotion);
         $this->searchMinusEmoteFactory($plusEmotion);
 
-        $this->addCountForUserLikes();
+//        $this->addCountForUserLikes();
 
         $result[$plusEmotion] = self::getCountEmotion($this->set, $this->articleId, $plusEmotion);
         $result[$this->minusEmotionName] = self::getCountEmotion($this->set, $this->articleId, $this->minusEmotionName);
