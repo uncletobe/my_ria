@@ -52,10 +52,11 @@
                                     </span>
                                 </div>
                             </a>
-                            <a href="" class="author-block__author-info">
+                            <a href="{{ url('user/id', [$news->user->id]) }}" class="author-block__author-info">
                                 <span class="author-info__image">
                                     <img
-                                        src="{{ $news->getUserAvatar($news->user->avatar) }}"
+{{--                                        src="{{ $news->getUserAvatar($news->user->avatar) }}"--}}
+                                        src="{{ $news->user->avatar }}"
                                         alt=""
                                     />
                                 </span>

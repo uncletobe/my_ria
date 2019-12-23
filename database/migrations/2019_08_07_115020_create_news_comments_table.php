@@ -15,8 +15,8 @@ class CreateNewsCommentsTable extends Migration
     {
         Schema::create('news_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('article_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('article_id')->unsigned();
             $table->text('comment_raw');
 
             $table->timestamps();

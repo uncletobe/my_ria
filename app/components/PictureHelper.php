@@ -12,7 +12,7 @@ trait PictureHelper {
 
     public function getPicPathByRes($path, $res) {
 
-        $picPath = $path . $this->resolution[$res] . Constants::PICTURE_EXTENSION;
+        $picPath = $path . $this->resolution[$res] . '.jpg';
         $serverPath = url("") . $this->storagePrevPath . '/' . $picPath;
 
         if (!Storage::isImgExist($serverPath)) {
@@ -26,7 +26,7 @@ trait PictureHelper {
 
     public function getUserAvatar($path) {
 
-        $picPath = $path . Constants::PICTURE_EXTENSION;
+        $picPath = $path . '.jpg';
         $serverPath = url("") . $this->storageAvPath . '/' . $picPath;
 
         if (!Storage::isImgExist($serverPath)) {

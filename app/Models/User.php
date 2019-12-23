@@ -9,11 +9,17 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Redis;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use PictureHelper;
+
+    const IS_BANNED_DEFAULT = 0;
+    const USER_VERIFIED = 1;
+    const USER_NOT_VERIFIED = 0;
+    const UNCONFIRMED_USER = 5;
 
     public $howLongRegister;
 
@@ -69,8 +75,8 @@ class User extends Authenticatable
 
         $this->email_verified_at = Carbon::now();
         $this->updated_at = Carbon::now();
-        $this->role_id = Constants::DEFAULT_USER_ROLE;
-        $this->is_verified = 1;
+        $this->role_id = Role::DEFAULT_USER_ROLE;
+        $this->is_verified = self::USER_VERIFIED;
         $result = $this->update();
 
         return $result;

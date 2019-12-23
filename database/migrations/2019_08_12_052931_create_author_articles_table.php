@@ -15,7 +15,7 @@ class CreateAuthorArticlesTable extends Migration
     {
         Schema::create('author_articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('author_id');
+            $table->bigInteger('author_id')->unsigned();
 
             $table->string('article_title');
             $table->string('article_slug')->unique();

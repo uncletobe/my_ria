@@ -33,6 +33,7 @@ class NewsCategoriesSeeder extends Seeder
             $categories[] = [
                 'category_title' => $names[$i],
                 'category_slug' => Str::slug($names[$i]),
+                'created_at' => Carbon::now()
             ];
         }
 

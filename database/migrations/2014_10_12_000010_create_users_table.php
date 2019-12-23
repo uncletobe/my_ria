@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 64);
             $table->string('avatar')->nullable();
-            $table->bigInteger('role_id')->nullable();
+            $table->bigInteger('role_id')->unsigned()->nullable();
             $table->smallInteger('is_banned');
             $table->boolean('is_verified');
             $table->string('confirm_token');
@@ -41,7 +41,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::table('users', function ($table) {
+            $table->dropForeign(['users_role_id_foreign']);
+        });
         Schema::dropIfExists('users');
-        Schema::dropForeign('role_id');
     }
 }

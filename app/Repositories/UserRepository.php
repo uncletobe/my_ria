@@ -42,7 +42,7 @@ class UserRepository extends CoreRepository {
     public function getUserByToken($token) {
 
         $result = $this->startConditions()
-            ->select('id', 'email_verified_at')
+            ->select('id', 'is_verified', 'email_verified_at')
             ->where('confirm_token', $token)
             ->get();
 

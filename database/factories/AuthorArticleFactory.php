@@ -32,7 +32,7 @@ $factory->define(AuthorArticle::class, function (Faker $faker) {
             'article_content_html' => $txt,
             'article_picture_preview_path' => "path:\C:\\" . Str::slug($title, "\\"),
             'is_published' => $isPublished,
-            'published_at' => $isPublished ? $faker->dateTimeBetween('-10 day', 'now') : null,
+            'published_at' => $isPublished ? $createdAt : null,
             'created_at'   => $createdAt,
             'updated_at'   => $createdAt,
 

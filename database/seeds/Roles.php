@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class Roles extends Seeder
 {
@@ -23,7 +24,8 @@ class Roles extends Seeder
 
             $result[] = [
                 'title' => $roles[$i],
-                'slug' => Str::slug($roles[$i])
+                'slug' => Str::slug($roles[$i]),
+                'created_at' => Carbon::now()
             ];
         }
 
