@@ -155,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
   				handleResponseFromServer(res);
   		});
 	}
-
   
 	function getSlug() {
 		let url = window.location.pathname;

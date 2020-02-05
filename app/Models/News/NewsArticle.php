@@ -22,11 +22,13 @@ class NewsArticle extends BaseArticleModel
 
 
     public function newsPicture() {
-        return $this->hasMany('App\Models\News\NewsPicture', 'article_id');
+        //select `id`, `article_id`, `news_picture_path` from `news_pictures`
+        // where `news_pictures`.`article_id` in (393, 403, 416, 427, 432, 441, 496)
+        return $this->hasMany('App\Models\News\NewsPicture', "article_id");
     }
 
     public function newsComment() {
-        return $this->hasMany('App\Models\News\NewsComment', 'article_id');
+        return $this->hasMany('App\Models\News\NewsComment', "article_id");
     }
 
     public function articleTag() {

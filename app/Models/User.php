@@ -58,6 +58,10 @@ class User extends Authenticatable
 //        return $this->hasMany('App\Models\News\AuthorArticle', 'author_id', 'id');
 //    }
 
+//    public function newComment() {
+//        return $this->belongsTo('App\Models\NewsComment');
+//    }
+
 
     public function getUserName() {
         if (empty($this->name)) {

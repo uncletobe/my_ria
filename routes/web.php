@@ -42,9 +42,6 @@ Route::get('user/logout', 'Auth\LogoutController')->name('logout');
 //    return 'Sent';
 //});
 
-//Route::match(['get'], 'user/register', function(){
-//    return abort(404);
-//});
 
 /* --> Redis */
 

@@ -16,6 +16,7 @@ class AuthorArticle extends BaseArticleModel
     ];
 
     public function user() {
+        //id - у таблицы user, author_id у себя(author_article)
         return $this->hasOne(User::class, 'id', 'author_id');
     }
 

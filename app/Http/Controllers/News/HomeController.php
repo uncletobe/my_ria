@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ArticleRepository;
 use App\Repositories\AuthorArticleRepository;
 
-
 class HomeController extends Controller
 {
     private $articleRepository;

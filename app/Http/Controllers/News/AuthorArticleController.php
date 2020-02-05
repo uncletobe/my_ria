@@ -33,6 +33,8 @@ class AuthorArticleController extends Controller
 
         $article = $this->authorArticleRepository->getSingleArticle($articleSlug);
 
+        //dd($article);
+
         if (empty($article[0])) {
             abort(404);
         }
